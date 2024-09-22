@@ -26,7 +26,7 @@ const SignUp = () => {
           <div className="space-y-2 flex flex-col">
             <Button width="full">Sign Up</Button>
             <p className="text-center">
-              Dont have an account?
+              Dont have an account?{" "}
               <span className="underline">
                 <Link href="/signup">Sign up</Link>
               </span>
