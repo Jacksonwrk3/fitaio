@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   width = "auto",
 }) => {
-  const primaryClasses = "bg-blue-600 text-white";
+  const primaryClasses = "bg-blue-600 text-white hover:bg-blue-700";
   const secondaryClasses = "bg-white border-grayPrimary border text-black";
   const widthClasses = width === "full" ? "w-full" : "w-auto";
   return (
@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={`${
         variant === "primary" ? primaryClasses : secondaryClasses
-      }  ${widthClasses} px-4 py-2 rounded`}
+      }  ${widthClasses} px-4 py-3 rounded`}
     >
       {children}
     </button>
