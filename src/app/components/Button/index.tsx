@@ -29,17 +29,20 @@ const Button: React.FC<ButtonProps> = ({
   width = "auto",
 }) => {
   const primaryClasses = "bg-blue-600 text-white hover:bg-blue-700";
-  const secondaryClasses = "bg-white border-grayPrimary border text-black";
+  const secondaryClasses =
+    "bg-white hover:bg-gray-100 border-grayPrimary border text-black";
   const widthClasses = width === "full" ? "w-full" : "w-auto";
   return (
-    <button
-      onClick={onClick}
-      className={`${
-        variant === "primary" ? primaryClasses : secondaryClasses
-      }  ${widthClasses} px-4 py-3 rounded`}
-    >
-      {children}
-    </button>
+    <div className="w-screen h-screen">
+      <button
+        onClick={onClick}
+        className={`${
+          variant === "primary" ? primaryClasses : secondaryClasses
+        }  ${widthClasses} px-4 py-3 rounded`}
+      >
+        {children}
+      </button>
+    </div>
   );
 };
 
