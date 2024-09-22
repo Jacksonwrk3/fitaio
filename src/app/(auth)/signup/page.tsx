@@ -1,6 +1,6 @@
 "use client";
-import { Button, TextInput } from "../components/index";
-import { signup } from "../actions/auth/index";
+import { Button, TextInput } from "../../components/index";
+import Link from "next/link";
 import React, { useState } from "react";
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -23,7 +23,15 @@ const SignUp = () => {
           <TextInput id="username" value={username} onChange={passwordOnChange}>
             Password
           </TextInput>
-          <Button width="full">Sign Up</Button>
+          <div className="space-y-2 flex flex-col">
+            <Button width="full">Sign Up</Button>
+            <p className="text-center">
+              Already have an account?{" "}
+              <span className="underline">
+                <Link href="/login">Login</Link>
+              </span>
+            </p>
+          </div>
         </form>
       </div>
     </div>
