@@ -25,7 +25,7 @@ describe("Button", () => {
   it("should render the button with the outlined variant", () => {
     render(<Button variant="outlined">Outlined Button</Button>);
     const button = screen.getByText("Outlined Button");
-    expect(button).toHaveClass("bg-white border-[#e2e8f0] border text-black");
+    expect(button).toHaveClass("bg-white border-grayPrimary border text-black");
   });
 
   it("should render the button with the primary variant if variant is not provided", () => {
