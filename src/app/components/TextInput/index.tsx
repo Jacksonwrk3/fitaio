@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import { useState, useEffect } from "react";
 
 /**
  * @typedef {Object} TextInputProps - The props for the TextInput component
@@ -17,10 +18,12 @@ type TextInputProps = {
   placeholder?: string;
   onChange: (username: string) => void;
   value: string;
+  type?: "text" | "password";
 };
 
 /**
  * @description The TextInput component
+ * @dev [Props]type - Is defaulted to "text"
  * @type {React.FC<TextInputProps>}
  * @returns {JSX.Element} The rendered TextInput element
  */
@@ -30,23 +33,46 @@ const TextInput: React.FC<TextInputProps> = ({
   placeholder,
   onChange,
   value,
+  type = "text",
 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    setIsVisible(() => {
+      return !isVisible;
+    });
+  };
+
+  useEffect(() => {
+    if (type === "text") {
+      setIsVisible(true);
+    }
+  }, []);
   return (
     <div className="flex flex-col space-y-1">
       <label className="font-bold" htmlFor={id}>
         {children}
       </label>
-      <input
-        type="text"
-        id={id}
-        name={id}
-        className="border border-grayPrimary rounded py-2 pl-4"
-        placeholder={placeholder}
-        onChange={(e) => {
-          onChange(e.target.value);
-        }}
-        value={value}
-      />
+      <div className=" relative flex items-center border border-grayPrimary">
+        <input
+          type={isVisible ? "text" : "password"}
+          id={id}
+          name={id}
+          className=" rounded py-2 pl-4 w-full"
+          placeholder={placeholder}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+          value={value}
+        />
+        {type === "password" && (
+          <div
+            className="text-blue-500 absolute right-0 mr-4 cursor-pointer"
+            onClick={toggleVisibility}
+          >
+            {isVisible ? "Hide" : "Show"}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -20,7 +20,12 @@ const SignUp = () => {
           <TextInput id="username" value={username} onChange={usernameOnChange}>
             Username
           </TextInput>
-          <TextInput id="username" value={username} onChange={passwordOnChange}>
+          <TextInput
+            type="password"
+            id="username"
+            value={password}
+            onChange={passwordOnChange}
+          >
             Password
           </TextInput>
           <div className="space-y-2 flex flex-col">

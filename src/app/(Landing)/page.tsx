@@ -9,7 +9,7 @@ export default function Home() {
           <Link href="/signup">Sign Up</Link>
         </Button>
         <Button onClick={() => {}} variant="outlined">
-          <Link href="/login">Sign In</Link>
+          <Link href="/login">Login</Link>
         </Button>
       </div>
     </div>
