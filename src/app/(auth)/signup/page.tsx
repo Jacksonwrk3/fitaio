@@ -5,26 +5,34 @@ import React, { useState } from "react";
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const usernameOnChange = (username: string) => {
-    setUsername(username);
+  const usernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
   };
 
-  const passwordOnChange = (password: string) => {
-    setPassword(password);
+  const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="max-w-lg w-full">
         <h1 className=" font-bold text-2xl text-center">Create An Account</h1>
         <form className="border-2 border-grayPrimary rounded px-6 py-8 m-2  space-y-6">
-          <TextInput id="username" value={username} onChange={usernameOnChange}>
+          <TextInput
+            id="username"
+            value={username}
+            onChange={(e) => {
+              usernameOnChange(e);
+            }}
+          >
             Username
           </TextInput>
           <TextInput
             type="password"
             id="username"
             value={password}
-            onChange={passwordOnChange}
+            onChange={(e) => {
+              passwordOnChange(e);
+            }}
           >
             Password
           </TextInput>

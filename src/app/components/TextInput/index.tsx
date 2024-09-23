@@ -9,14 +9,14 @@ import { useState, useEffect } from "react";
  * - the name attribute of the input element
  * @property {React.ReactNode} children - The content inside the label element
  * @property {string} placeholder - The placeholder for the input element
- * @property {() => {}} onChange - The function to be called when the input value changes
+ * @property {(e: React.ChangeEvent<HTMLInputElement>) => void} onChange - The function to be called when the input value changes
  * @property {string} value - The value of the input element
  */
 type TextInputProps = {
   id: string;
   children: React.ReactNode;
   placeholder?: string;
-  onChange: (username: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   type?: "text" | "password";
 };
@@ -60,7 +60,7 @@ const TextInput: React.FC<TextInputProps> = ({
           className=" rounded py-2 pl-4 w-full"
           placeholder={placeholder}
           onChange={(e) => {
-            onChange(e.target.value);
+            onChange(e);
           }}
           value={value}
         />
