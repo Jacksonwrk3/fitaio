@@ -16,7 +16,7 @@ const SignUp = () => {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="max-w-lg w-full">
-        <h1 className=" font-bold text-2xl text-center">Log In</h1>
+        <h1 className=" font-bold text-4xl text-center">Log In</h1>
         <form className="border-2 border-grayPrimary rounded px-6 py-8 m-2  space-y-6">
           <TextInput
             id="username"
