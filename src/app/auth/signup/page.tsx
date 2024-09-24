@@ -38,12 +38,23 @@ const SignUp = () => {
           </TextInput>
           <div className="space-y-2 flex flex-col">
             <Button width="full">Sign Up</Button>
+
             <p className="text-center">
               Already have an account?{" "}
               <span className="underline">
                 <Link href="/login">Login</Link>
               </span>
             </p>
+            <div className="flex flex-row items-center py-4">
+              <div className="h-px bg-grayPrimary w-full"></div>
+
+              <span className="px-6 text-xs">OR</span>
+              <div className="h-px bg-grayPrimary w-full"></div>
+            </div>
+
+            <Button width="full" variant="outlined">
+              Sign up with Google
+            </Button>
           </div>
         </form>
       </div>
