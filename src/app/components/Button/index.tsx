@@ -10,7 +10,7 @@
  */
 type ButtonProps = {
   children: React.ReactNode;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e?: React.MouseEvent) => void;
   variant?: "primary" | "outlined";
   width?: "full" | "auto";
   icon?: "string";

@@ -64,9 +64,9 @@ const SignUp = () => {
             <Button
               width="full"
               variant="outlined"
-              onClick={(e: React.MouseEvent) => {
+              onClick={(e) => {
                 console.log("clicked");
-                e.preventDefault();
+                e!.preventDefault();
                 google();
               }}
             >
