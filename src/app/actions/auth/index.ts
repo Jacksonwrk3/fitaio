@@ -1,3 +1,3 @@
-import signup from "./signup";
+import googleSignUp from "./register/google";
 
-export { signup };
+export { googleSignUp };

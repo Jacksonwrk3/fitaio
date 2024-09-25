@@ -6,10 +6,10 @@ export default function Home() {
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="flex space-x-4">
         <Button onClick={() => console.log("hello")}>
-          <Link href="/signup">Sign Up</Link>
+          <Link href="/auth/signup">Sign Up</Link>
         </Button>
         <Button onClick={() => {}} variant="outlined">
-          <Link href="/login">Login</Link>
+          <Link href="/auth/login">Login</Link>
         </Button>
       </div>
     </div>
