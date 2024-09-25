@@ -3,15 +3,17 @@
 /**
  * @description Type for the Button component's props
  * @property {React.ReactNode} children - The content inside the button
- * @property {() =>{}} onClick - The function to be called when the button is clicked
+ * @property {(e?: React.MouseEvent) => void} onClick - The function to be called when the button is clicked
  * @property {string} variant - The variant of the button
  * @property {string} width - The width of the button
+ * @property {string} icon - The icon to be displayed
  */
 type ButtonProps = {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent) => void;
   variant?: "primary" | "outlined";
   width?: "full" | "auto";
+  icon?: "string";
 };
 
 /**
@@ -27,6 +29,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   variant = "primary",
   width = "auto",
+  icon,
 }) => {
   const primaryClasses = "bg-blue-600 text-white hover:bg-blue-700";
   const secondaryClasses =

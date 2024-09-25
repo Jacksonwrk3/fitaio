@@ -1,7 +1,11 @@
 "use client";
 import { Button, TextInput } from "../../components/index";
 import Link from "next/link";
+import { googleSignUp } from "@/app/actions/auth/index";
 import React, { useState } from "react";
+/**
+ * @TODO Error handle for google sign up
+ */
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -11,6 +15,14 @@ const SignUp = () => {
 
   const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const google = async () => {
+    try {
+      const res = await googleSignUp();
+    } catch (error) {
+      let errorMsg = (error as Error).message;
+    }
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
@@ -38,12 +50,31 @@ const SignUp = () => {
           </TextInput>
           <div className="space-y-2 flex flex-col">
             <Button width="full">Sign Up</Button>
+
             <p className="text-center">
               Already have an account?{" "}
               <span className="underline">
-                <Link href="/login">Login</Link>
+                <Link href="/auth/login">Login</Link>
               </span>
             </p>
+            <div className="flex flex-row items-center py-4">
+              <div className="h-px bg-grayPrimary w-full"></div>
+
+              <span className="px-6 text-xs">OR</span>
+              <div className="h-px bg-grayPrimary w-full"></div>
+            </div>
+
+            <Button
+              width="full"
+              variant="outlined"
+              onClick={(e) => {
+                console.log("clicked");
+                e!.preventDefault();
+                google();
+              }}
+            >
+              Sign up with Google
+            </Button>
           </div>
         </form>
       </div>
