@@ -3,7 +3,7 @@
 /**
  * @description Type for the Button component's props
  * @property {React.ReactNode} children - The content inside the button
- * @property {(e: React.MouseEvent) =>{}} onClick - The function to be called when the button is clicked
+ * @property {(e?: React.MouseEvent) => void} onClick - The function to be called when the button is clicked
  * @property {string} variant - The variant of the button
  * @property {string} width - The width of the button
  * @property {string} icon - The icon to be displayed

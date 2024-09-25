@@ -3,6 +3,9 @@ import { Button, TextInput } from "../../components/index";
 import Link from "next/link";
 import { googleSignUp } from "@/app/actions/auth/index";
 import React, { useState } from "react";
+/**
+ * @TODO Error handle for google sign up
+ */
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
