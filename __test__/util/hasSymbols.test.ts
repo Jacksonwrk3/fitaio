@@ -1,4 +1,4 @@
-import { hasSymbols } from "@/app/util/auth";
+import { hasSymbols } from "@/app/util/validation";
 
 describe("hasSymbols", () => {
   /**

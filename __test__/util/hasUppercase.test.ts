@@ -1,5 +1,5 @@
-import { hasUppercase } from "@/app/util/auth";
-import { ValidationResult } from "@/app/util/auth/types";
+import { hasUppercase } from "@/app/util/validation";
+import { ValidationResult } from "@/app/util/validation/types";
 describe("hasUppercase", () => {
   /**
    * @type {ValidationResult} is being referenced in both test cases
