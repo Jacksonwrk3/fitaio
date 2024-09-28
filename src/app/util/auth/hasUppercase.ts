@@ -18,3 +18,5 @@ const hasUppercase = (password: string): ValidationResult => {
     return { isValid: false, error: "Password must contain atleast 1 symbol" };
   }
 };
+
+export default hasUppercase;

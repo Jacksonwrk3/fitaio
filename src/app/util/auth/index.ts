@@ -1,3 +1,3 @@
 import hasSymbols from "./hasSymbols";
-
-export { hasSymbols };
+import hasUppercase from "./hasUppercase";
+export { hasSymbols, hasUppercase };
