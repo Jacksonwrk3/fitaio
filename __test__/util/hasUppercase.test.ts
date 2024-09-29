@@ -10,9 +10,11 @@ describe("hasUppercase", () => {
     expect(res.error).toEqual(null);
   });
 
-  it("isValid should be false and error should be `Password must contain atleast 1 symbol` if password does NOT contain an uppercase letter ", () => {
+  it("isValid should be false and error should be `Password must contain atleast 1 uppercase characer` if password does NOT contain an uppercase letter ", () => {
     const res = hasUppercase("password123!");
     expect(res.isValid).toEqual(false);
-    expect(res.error).toEqual(`Password must contain atleast 1 symbol`);
+    expect(res.error).toEqual(
+      `Password must contain atleast 1 uppercase characer`
+    );
   });
 });

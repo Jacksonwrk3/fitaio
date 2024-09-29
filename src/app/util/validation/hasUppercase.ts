@@ -15,7 +15,10 @@ const hasUppercase = (password: string): ValidationResult => {
       error: null,
     };
   } else {
-    return { isValid: false, error: "Password must contain atleast 1 symbol" };
+    return {
+      isValid: false,
+      error: "Password must contain atleast 1 uppercase characer",
+    };
   }
 };
 
