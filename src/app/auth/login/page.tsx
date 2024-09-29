@@ -1,6 +1,8 @@
 "use client";
 import { on } from "events";
 import { Button, TextInput } from "../../components/index";
+import { googleSignUp } from "@/app/actions/auth/index";
+
 import Link from "next/link";
 import React, { useState } from "react";
 const SignUp = () => {
@@ -12,6 +14,14 @@ const SignUp = () => {
 
   const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const googleLogin = async () => {
+    try {
+      const res = await googleSignUp();
+    } catch (error) {
+      let errorMsg = (error as Error).message;
+    }
   };
   return (
     <div className="w-screen h-screen flex items-center justify-center">
@@ -45,6 +55,24 @@ const SignUp = () => {
                 <Link href="/auth/signup">Sign up</Link>
               </span>
             </p>
+            <div className="flex flex-row items-center py-4">
+              <div className="h-px bg-grayPrimary w-full"></div>
+
+              <span className="px-6 text-xs">OR</span>
+              <div className="h-px bg-grayPrimary w-full"></div>
+            </div>
+
+            <Button
+              width="full"
+              variant="outlined"
+              onClick={(e) => {
+                console.log("clicked");
+                e!.preventDefault();
+                googleLogin();
+              }}
+            >
+              Login with Google
+            </Button>
           </div>
         </form>
       </div>

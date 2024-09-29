@@ -17,7 +17,7 @@ const SignUp = () => {
     setPassword(e.target.value);
   };
 
-  const google = async () => {
+  const googleRegister = async () => {
     try {
       const res = await googleSignUp();
     } catch (error) {
@@ -70,7 +70,7 @@ const SignUp = () => {
               onClick={(e) => {
                 console.log("clicked");
                 e!.preventDefault();
-                google();
+                googleRegister();
               }}
             >
               Sign up with Google
