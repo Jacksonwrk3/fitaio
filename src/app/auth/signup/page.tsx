@@ -40,7 +40,7 @@ const SignUp = () => {
           </TextInput>
           <TextInput
             type="password"
-            id="username"
+            id="password"
             value={password}
             onChange={(e) => {
               passwordOnChange(e);
