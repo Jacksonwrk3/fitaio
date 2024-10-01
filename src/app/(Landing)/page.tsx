@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "../components/index";
 import Link from "next/link";
-import { createClient } from "../util/supabase/client";
 export default function Home() {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
