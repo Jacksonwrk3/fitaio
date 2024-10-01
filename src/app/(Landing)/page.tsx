@@ -4,13 +4,17 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="w-screen h-screen flex items-center justify-center">
-      <div className="flex space-x-4">
-        <Button onClick={() => console.log("hello")}>
-          <Link href="/auth/signup">Sign Up</Link>
-        </Button>
-        <Button onClick={() => {}} variant="outlined">
-          <Link href="/auth/login">Login</Link>
-        </Button>
+      <div className="flex space-x-4 ">
+        <Link href="/auth/signup">
+          <Button onClick={() => {}} variant="primary">
+            Sign up
+          </Button>
+        </Link>
+        <Link href="/auth/login">
+          <Button onClick={() => {}} variant="outlined">
+            Log in
+          </Button>
+        </Link>
       </div>
     </div>
   );
