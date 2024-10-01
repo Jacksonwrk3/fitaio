@@ -9,7 +9,6 @@ import { redirect } from "next/navigation";
  * @see https://supabase.com/docs/reference/javascript/auth-sign-in-with-google
  */
 const googleSignUp = async () => {
-  console.log("hello");
   const supabase = createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -17,7 +16,6 @@ const googleSignUp = async () => {
       redirectTo: "http://localhost:3000",
     },
   });
-  console.log("hello");
   if (error) {
     throw new Error(error.message);
   }
