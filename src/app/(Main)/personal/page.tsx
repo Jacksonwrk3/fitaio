@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { SessionContext } from "../context/Session/SessionContext";
-import { Button } from "../components";
-import { createClient } from "../util/supabase/client";
+import { SessionContext } from "@/app/context/Session/SessionContext";
+import { Button } from "@/app/components";
+import { createClient } from "@/app/util/supabase/client";
 const Personal = () => {
   const session = useContext(SessionContext);
   const router = useRouter();
