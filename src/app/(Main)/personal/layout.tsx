@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "../globals.css";
+import "../../globals.css";
 export const metadata: Metadata = {
-  title: "Dashboard - FitAIO",
+  title: "Dashboard | FitAIO",
   description: "Main content for personal and coaching users",
 };
 
@@ -12,7 +12,7 @@ export default function MainLayout({
 }>) {
   return (
     <div>
-      <nav>
+      <nav className="bg-blue-100">
         <ul>
           <li>Routines</li>
           <li>Programs</li>

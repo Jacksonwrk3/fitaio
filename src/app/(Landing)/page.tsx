@@ -13,7 +13,7 @@ export default function Home() {
     if (session) {
       // Redirect to /personal if session exists
       console.log("Going to personal");
-      router.replace("/personal");
+      router.replace("/personal/workouts");
     } else {
       // No session, stay on the current page
       console.log("session is null");
