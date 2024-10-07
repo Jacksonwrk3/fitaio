@@ -2,9 +2,8 @@
 import { useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/app/context/Session/SessionContext";
-import { createClient } from "@/app/util/supabase/client";
-import { Button } from "@/app/components";
-const Workouts = () => {
+
+const FindACoach = () => {
   const session = useContext(SessionContext);
   const router = useRouter();
 
@@ -17,7 +16,7 @@ const Workouts = () => {
       router.replace("/");
     }
   }, [session, router]);
-  return <>Workout Page</>;
+  return <>Find A Coach</>;
 };
 
-export default Workouts;
+export default FindACoach;
