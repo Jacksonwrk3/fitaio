@@ -11,9 +11,9 @@ export default function Home() {
 
   useEffect(() => {
     if (session) {
-      // Redirect to /client if session exists
+      // Redirect to /user/routines if session exists
       console.log("Going to personal");
-      router.replace("/client/routines");
+      router.replace("/user/routines");
     } else {
       // No session, stay on the current page
       console.log("session is null");

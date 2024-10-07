@@ -16,10 +16,10 @@ const NavBar = () => {
 
   // Navigation items to be displayed in the navbar
   const navItems = [
-    { name: "Routine", path: "/client/routines" },
-    { name: "Programs", path: "/client/programs" },
-    { name: "Find a Coach", path: "/client/find-a-coach" },
-    { name: "Be a Coach", path: "/client/be-a-coach" },
+    { name: "Routine", path: "/user/routines" },
+    { name: "Programs", path: "/user/programs" },
+    { name: "Find a Coach", path: "/user/find-a-coach" },
+    { name: "Be a Coach", path: "/user/be-a-coach" },
   ];
 
   // CSS classes for active and passive links
