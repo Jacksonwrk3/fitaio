@@ -9,6 +9,10 @@ import React, { useState } from "react";
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [validLength, setValidLength] = useState(false);
+  const [hasUppercase, setUppercase] = useState(false);
+  const [hasSymbol, setHasSymbol] = useState(false);
+  const [hasLowercase, sethasLowercase] = useState(false);
   const usernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
