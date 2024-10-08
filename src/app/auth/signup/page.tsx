@@ -5,6 +5,7 @@ import { googleSignUp } from "@/app/actions/auth/index";
 import React, { useState } from "react";
 /**
  * @TODO Error handle for google sign up
+ * @TODO implement debounce for password validation check
  */
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -12,6 +13,7 @@ const SignUp = () => {
   const [validLength, setValidLength] = useState(false);
   const [hasUppercase, setUppercase] = useState(false);
   const [hasSymbol, setHasSymbol] = useState(false);
+  const [hasNumber, setHasNumber] = useState(false);
   const [hasLowercase, sethasLowercase] = useState(false);
   const usernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -52,6 +54,23 @@ const SignUp = () => {
           >
             Password
           </TextInput>
+          <div className="text-sm space-y-1">
+            <p className={validLength ? "text-green-500" : "text-red-500"}>
+              Password must be over 8 characters
+            </p>
+            <p className={hasUppercase ? "text-green-500" : "text-red-500"}>
+              Password must contain 1 uppcercase character (A-Z)
+            </p>
+            <p className={hasLowercase ? "text-green-500" : "text-red-500"}>
+              Password must contain 1 lowercase character (a-z)
+            </p>
+            <p className={hasSymbol ? "text-green-500" : "text-red-500"}>
+              Password must contain 1 symbol (!@#$%^&*)
+            </p>
+            <p className={hasNumber ? "text-green-500" : "text-red-500"}>
+              Password must contain 1 number (0-9)
+            </p>
+          </div>
           <div className="space-y-2 flex flex-col">
             <Button width="full">Sign Up</Button>
 
