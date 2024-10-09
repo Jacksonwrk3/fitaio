@@ -5,7 +5,7 @@ import { ValidationResult } from "./types";
  * @param {string} - str
  * @returns {ValidationResult}
  */
-const hasNumbers = (str: string): ValidationResult => {
+const hasNumber = (str: string): ValidationResult => {
   let res = /\d/.test(str);
   if (res) {
     return { isValid: true, error: null };
@@ -14,4 +14,4 @@ const hasNumbers = (str: string): ValidationResult => {
   }
 };
 
-export default hasNumbers;
+export default hasNumber;
