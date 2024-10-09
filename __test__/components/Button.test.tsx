@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { Button } from "../../src/app/components/index";
 describe("Button", () => {
@@ -32,5 +32,13 @@ describe("Button", () => {
     render(<Button>Test</Button>);
     const button = screen.getByText("Test");
     expect(button).toHaveClass("bg-blue-600 text-white");
+  });
+
+  it("Button should not be clickable if it is disabled", () => {
+    const handleClick = jest.fn();
+    render(<Button disabled={true}>Test</Button>);
+    const button = screen.getByText("Test");
+    fireEvent.click(button);
+    expect(handleClick).toHaveBeenCalledTimes(0);
   });
 });
