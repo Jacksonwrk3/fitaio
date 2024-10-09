@@ -36,7 +36,11 @@ describe("Button", () => {
 
   it("Button should not be clickable if it is disabled", () => {
     const handleClick = jest.fn();
-    render(<Button disabled={true}>Test</Button>);
+    render(
+      <Button disabled={true} onClick={handleClick}>
+        Test
+      </Button>
+    );
     const button = screen.getByText("Test");
     fireEvent.click(button);
     expect(handleClick).toHaveBeenCalledTimes(0);
