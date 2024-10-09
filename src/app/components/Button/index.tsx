@@ -14,6 +14,7 @@ type ButtonProps = {
   variant?: "primary" | "outlined";
   width?: "full" | "auto";
   icon?: "string";
+  disabled: boolean;
 };
 
 /**
@@ -30,6 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   width = "auto",
   icon,
+  disabled = false,
 }) => {
   const primaryClasses = "bg-blue-600 text-white hover:bg-blue-700";
   const secondaryClasses =
@@ -38,6 +40,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={`${
         variant === "primary" ? primaryClasses : secondaryClasses
       }  ${widthClasses} px-4 py-3 rounded`}
