@@ -14,7 +14,7 @@ type ButtonProps = {
   variant?: "primary" | "outlined";
   width?: "full" | "auto";
   icon?: "string";
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 /**
