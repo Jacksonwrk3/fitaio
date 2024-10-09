@@ -22,7 +22,7 @@ const SignUp = () => {
   const [containsSymbol, setContainsSymbol] = useState(false);
   const [containsNumber, setContainsNumber] = useState(false);
   const [containsLowercase, setContainsLowercase] = useState(false);
-
+  const [disableSignup, setDisableSignup] = useState(true);
   const usernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
@@ -37,6 +37,18 @@ const SignUp = () => {
     setContainsSymbol(hasSymbols(newPassword).isValid);
     setContainsValidLength(validLength(newPassword, 9).isValid);
     setContainsNumber(hasNumber(newPassword).isValid);
+
+    if (
+      containsLowercase &&
+      containsNumber &&
+      containsSymbol &&
+      containsUppercase &&
+      containsValidLength
+    ) {
+      setDisableSignup(false);
+    } else {
+      setDisableSignup(true);
+    }
   };
 
   const googleRegister = async () => {
@@ -96,7 +108,15 @@ const SignUp = () => {
             </p>
           </div>
           <div className="space-y-2 flex flex-col">
-            <Button width="full">Sign Up</Button>
+            <Button
+              width="full"
+              disabled={disableSignup}
+              onClick={(e) => {
+                e?.preventDefault();
+              }}
+            >
+              Sign Up
+            </Button>
 
             <p className="text-center">
               Already have an account?{" "}
