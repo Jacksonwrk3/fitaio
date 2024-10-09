@@ -2,7 +2,14 @@
 import { Button, TextInput } from "../../components/index";
 import Link from "next/link";
 import { googleSignUp } from "@/app/actions/auth/index";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  hasLowercase,
+  hasUppercase,
+  hasSymbols,
+  validLength,
+  hasNumber,
+} from "@/app/util/validation";
 /**
  * @TODO Error handle for google sign up
  * @TODO implement debounce for password validation check
@@ -10,17 +17,26 @@ import React, { useState } from "react";
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [validLength, setValidLength] = useState(false);
-  const [hasUppercase, setUppercase] = useState(false);
-  const [hasSymbol, setHasSymbol] = useState(false);
-  const [hasNumber, setHasNumber] = useState(false);
-  const [hasLowercase, sethasLowercase] = useState(false);
+  const [containsValidLength, setContainsValidLength] = useState(false);
+  const [containsUppercase, setContainsUppercase] = useState(false);
+  const [containsSymbol, setContainsSymbol] = useState(false);
+  const [containsNumber, setContainsNumber] = useState(false);
+  const [containsLowercase, setContainsLowercase] = useState(false);
+
   const usernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
 
   const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+    const newPassword = e.target.value;
+
+    setPassword(newPassword); // Update the password state first
+
+    setContainsLowercase(hasLowercase(newPassword).isValid);
+    setContainsUppercase(hasUppercase(newPassword).isValid);
+    setContainsSymbol(hasSymbols(newPassword).isValid);
+    setContainsValidLength(validLength(newPassword, 9).isValid);
+    setContainsNumber(hasNumber(newPassword).isValid);
   };
 
   const googleRegister = async () => {
@@ -55,19 +71,27 @@ const SignUp = () => {
             Password
           </TextInput>
           <div className="text-sm space-y-1">
-            <p className={validLength ? "text-green-500" : "text-red-500"}>
+            <p
+              className={
+                containsValidLength ? "text-green-500" : "text-red-500"
+              }
+            >
               Password must be over 8 characters
             </p>
-            <p className={hasUppercase ? "text-green-500" : "text-red-500"}>
+            <p
+              className={containsUppercase ? "text-green-500" : "text-red-500"}
+            >
               Password must contain 1 uppcercase character (A-Z)
             </p>
-            <p className={hasLowercase ? "text-green-500" : "text-red-500"}>
+            <p
+              className={containsLowercase ? "text-green-500" : "text-red-500"}
+            >
               Password must contain 1 lowercase character (a-z)
             </p>
-            <p className={hasSymbol ? "text-green-500" : "text-red-500"}>
+            <p className={containsSymbol ? "text-green-500" : "text-red-500"}>
               Password must contain 1 symbol (!@#$%^&*)
             </p>
-            <p className={hasNumber ? "text-green-500" : "text-red-500"}>
+            <p className={containsNumber ? "text-green-500" : "text-red-500"}>
               Password must contain 1 number (0-9)
             </p>
           </div>
