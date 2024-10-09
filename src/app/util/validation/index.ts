@@ -3,4 +3,12 @@ import hasUppercase from "./hasUppercase";
 import validLength from "./validLength";
 import validPw from "./validPw";
 import hasLowercase from "./hasLowercase";
-export { hasSymbols, hasUppercase, validLength, validPw, hasLowercase };
+import hasNumbers from "./hasNumbers";
+export {
+  hasSymbols,
+  hasUppercase,
+  validLength,
+  validPw,
+  hasLowercase,
+  hasNumber,
+};
