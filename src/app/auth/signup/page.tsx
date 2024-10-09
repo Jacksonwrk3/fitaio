@@ -12,7 +12,6 @@ import {
 } from "@/app/util/validation";
 /**
  * @TODO Error handle for google sign up
- * @TODO implement debounce for password validation check
  */
 const SignUp = () => {
   const [username, setUsername] = useState("");
