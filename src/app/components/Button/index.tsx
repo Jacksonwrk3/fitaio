@@ -37,13 +37,17 @@ const Button: React.FC<ButtonProps> = ({
   const secondaryClasses =
     "bg-white hover:bg-gray-100 border-grayPrimary border text-black";
   const widthClasses = width === "full" ? "w-full" : "w-auto";
+  const disabledClasses =
+    disabled === true
+      ? "opacity-50 cursor-not-allowed"
+      : "opacity-100 cursor-auto";
   return (
     <button
       onClick={onClick}
       disabled={disabled}
       className={`${
         variant === "primary" ? primaryClasses : secondaryClasses
-      }  ${widthClasses} px-4 py-3 rounded`}
+      }  ${widthClasses} ${disabledClasses} px-4 py-3 rounded`}
     >
       {children}
     </button>
