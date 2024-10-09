@@ -30,25 +30,33 @@ const SignUp = () => {
   const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
 
-    setPassword(newPassword); // Update the password state first
+    // Update the password state
+    setPassword(newPassword);
 
-    setContainsLowercase(hasLowercase(newPassword).isValid);
-    setContainsUppercase(hasUppercase(newPassword).isValid);
-    setContainsSymbol(hasSymbols(newPassword).isValid);
-    setContainsValidLength(validLength(newPassword, 9).isValid);
-    setContainsNumber(hasNumber(newPassword).isValid);
+    // Evaluate the password's validity directly
+    const validLowercase = hasLowercase(newPassword).isValid;
+    const validUppercase = hasUppercase(newPassword).isValid;
+    const validSymbol = hasSymbols(newPassword).isValid;
+    const isValidLength = validLength(newPassword, 9).isValid;
+    const validNumber = hasNumber(newPassword).isValid;
 
-    if (
-      containsLowercase &&
-      containsNumber &&
-      containsSymbol &&
-      containsUppercase &&
-      containsValidLength
-    ) {
-      setDisableSignup(false);
-    } else {
-      setDisableSignup(true);
-    }
+    // Update state based on the latest password validity checks
+    setContainsLowercase(validLowercase);
+    setContainsUppercase(validUppercase);
+    setContainsSymbol(validSymbol);
+    setContainsValidLength(isValidLength);
+    setContainsNumber(validNumber);
+
+    // Determine if the signup should be disabled
+    setDisableSignup!(
+      !(
+        validLowercase &&
+        validNumber &&
+        validSymbol &&
+        validUppercase &&
+        validLength
+      )
+    );
   };
 
   const googleRegister = async () => {
