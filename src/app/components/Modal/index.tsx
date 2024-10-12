@@ -37,7 +37,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, target }) => {
   }
   return createPortal(
     <div className="w-screen h-screen flex items-center justify-center">
-      <></>
       <div className="border border-grayPrimary bg-blue-300">{children}</div>
     </div>,
     modalRoot
