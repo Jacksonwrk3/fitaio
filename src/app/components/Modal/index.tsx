@@ -32,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, target }) => {
 
   //If modal root is null then we return null and console.error
   if (!modalRoot) {
-    console.error(`Modal root not found ${target}`);
+    console.error(`Modal root not found: ${target}`);
     return null;
   }
   return createPortal(
