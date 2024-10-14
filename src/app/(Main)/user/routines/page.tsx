@@ -12,8 +12,8 @@ const Routines = () => {
   const closeModal = () => {
     setDisplayModal(false);
   };
-  const toggleModal = () => {
-    setDisplayModal((prevState) => !prevState);
+  const openModal = () => {
+    setDisplayModal(true);
   };
   useEffect(() => {
     //If there is an active session, do nothing
@@ -25,13 +25,15 @@ const Routines = () => {
     }
   }, [session, router]);
   return (
-    <div id="modal-root">
+    <div className="">
       <div>Create a Routines</div>
       <Button>Create a Routine</Button>
-      <Button onClick={toggleModal}>Toggle Modal</Button>
-      <Modal isOpen={displayModal} onClose={closeModal} target="modal-root">
-        Hello Hello Hello Hello Hello Hello Hello
-      </Modal>
+      <Button onClick={openModal}>Toggle Modal</Button>
+      <Modal
+        isOpen={displayModal}
+        onClose={closeModal}
+        target="modal-root"
+      ></Modal>
     </div>
   );
 };

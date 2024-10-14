@@ -12,7 +12,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div id="modal-root" className="border border-red-300">
       <NavBar />
       <main>{children}</main>
     </div>
