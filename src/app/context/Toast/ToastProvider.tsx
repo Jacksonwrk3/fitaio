@@ -43,11 +43,10 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   return (
     <ToastContext.Provider value={{ openToast, closeToast }}>
       {children}
-      <ul className="space-y-2 absolute bottom-4 right-4 border-2 border-blue-400">
+      <ul className="space-y-2 absolute bottom-4 right-4">
         {/* Renders all the toasts */}
         {toasts.map(({ id, component }) => (
           <li key={id} className="relative">
-            <button className="p-1 top-2 right-2 absolute">x</button>
             {component}
           </li>
         ))}
