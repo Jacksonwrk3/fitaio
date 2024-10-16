@@ -1,11 +1,7 @@
+"use client";
 import ToastContext from "./ToastContext";
 import React, { ReactElement, useState } from "react";
 import { Toast } from "./interface";
-
-/**
- * @TODO Render Toast List into the div
- * @TODO daily commit
- */
 
 /**
  * @interface ToastProviderProps interface for ToastProvider props
@@ -47,7 +43,15 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   return (
     <ToastContext.Provider value={{ openToast, closeToast }}>
       {children}
-      <div className="space-y-2 absolute bottom-4 right-4"></div>
+      <ul className="space-y-2 absolute bottom-4 right-4 border-2 border-blue-400">
+        {/* Renders all the toasts */}
+        {toasts.map(({ id, component }) => (
+          <li key={id} className="relative">
+            <button className="p-1 top-2 right-2 absolute">x</button>
+            {component}
+          </li>
+        ))}
+      </ul>
     </ToastContext.Provider>
   );
 };

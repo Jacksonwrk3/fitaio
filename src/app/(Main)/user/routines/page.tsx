@@ -3,12 +3,11 @@ import { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/app/context/Session/SessionContext";
 import { Button, Modal } from "@/app/components";
-
+import { useToast } from "@/app/hooks/useToast";
 const Routines = () => {
   const [displayModal, setDisplayModal] = useState(false);
   const session = useContext(SessionContext);
   const router = useRouter();
-
   const closeModal = () => {
     setDisplayModal(false);
   };
@@ -29,11 +28,9 @@ const Routines = () => {
       <div>Create a Routines</div>
       <Button>Create a Routine</Button>
       <Button onClick={openModal}>Toggle Modal</Button>
-      <Modal
-        isOpen={displayModal}
-        onClose={closeModal}
-        target="modal-root"
-      ></Modal>
+      <Modal isOpen={displayModal} onClose={closeModal} target="modal-root">
+        Child
+      </Modal>
     </div>
   );
 };
