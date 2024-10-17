@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { useToast } from "@/app/hooks";
 /**
  * @description ToastProps
  * @property {"success" | "warning" | "error" | "info"} status
@@ -13,6 +14,7 @@ interface ToastProps {
 }
 
 const Toast: React.FC<ToastProps> = ({ status, title, description }) => {
+  const { closeToast } = useToast();
   //Background color of the toast
   let bgColor;
 
@@ -24,30 +26,34 @@ const Toast: React.FC<ToastProps> = ({ status, title, description }) => {
   switch (status) {
     case "success":
       bgColor = "bg-green-500";
-      iconURL = "public/check.png";
+      iconURL = "/check.png";
       alt = "Success check mark";
       break;
     case "warning":
       bgColor = "bg-amber-500";
-      iconURL = "pubic/alert-orange.png";
+      iconURL = "/alert-orange.png";
       alt = "Warning icon";
       break;
     case "info":
       bgColor = "bg-sky-500";
-      iconURL = "public/info.png";
+      iconURL = "/info.png";
       alt = "Information icon";
       break;
     case "error":
       bgColor = "bg-red-500";
-      iconURL = "public/alert-red.png";
+      iconURL = "/alert-red.png";
       alt = "Error icon";
       break;
   }
   return (
-    <div className={`${bgColor} p-2 rounded`}>
-      <Image src={iconURL} width={16} height={16} alt={alt} />
+    <div
+      className={`${bgColor} relative rounded flex flex-row items-center text-white space-x-3 p-3 w-[350px] text-wrap break-word `}
+    >
+      <div className="p-1 rounded-full bg-white">
+        <Image src={iconURL} width={16} height={16} alt={alt} />
+      </div>
       <div>
-        <div>{title}</div>
+        <div className="font-bold">{title}</div>
         <div>{description}</div>
       </div>
     </div>
