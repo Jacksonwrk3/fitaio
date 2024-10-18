@@ -2,16 +2,20 @@
 import { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/app/context/Session/SessionContext";
-import { Button, Modal } from "@/app/components";
+import { Button, Modal, Toast } from "@/app/components";
 import { useToast } from "@/app/hooks/useToast";
+import { title } from "process";
 const Routines = () => {
   const [displayModal, setDisplayModal] = useState(false);
   const session = useContext(SessionContext);
   const router = useRouter();
+
+  const { openToast } = useToast();
   const closeModal = () => {
     setDisplayModal(false);
   };
   const openModal = () => {
+    openToast(<Toast status="error" title="Accounted Created" />, 5000);
     setDisplayModal(true);
   };
   useEffect(() => {
