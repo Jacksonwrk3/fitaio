@@ -8,7 +8,6 @@ import { nanoid } from "nanoid";
  * @interface ToastProviderProps interface for ToastProvider props
  * @property {React.ReactNode} children
  * @TODO center tosts for mobile, and have it on bottom right for bigger screens
- * @TODO daily commit
  */
 
 interface ToastProviderProps {
