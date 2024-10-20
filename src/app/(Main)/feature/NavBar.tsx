@@ -23,8 +23,8 @@ const NavBar = () => {
   ];
 
   // CSS classes for active and passive links
-  const activeLinkClasses = "text-black font-bold";
-  const passiveLinkClasses = "text-white font-normal";
+  const activeLinkClasses = "text-blue-500 font-bold";
+  const passiveLinkClasses = "text-black font-normal";
 
   /**
    * Sign out the current user from Supabase.
@@ -44,8 +44,9 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-blue-100 p-4">
-      <ul className="flex space-x-4">
+    <nav className="border-b py-3 grid grid-cols-3 place-items-center border-bg-grayPrimary ">
+      <div className="flex items-center">FitAIO</div>
+      <ul className="flex space-x-4 items-center">
         {navItems.map((item) => (
           <li key={item.path}>
             <Link
@@ -59,8 +60,10 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
-        <Button onClick={signout}>Sign Out</Button>
       </ul>
+      <div>
+        <Button onClick={signout}>Sign Out</Button>
+      </div>
     </nav>
   );
 };
