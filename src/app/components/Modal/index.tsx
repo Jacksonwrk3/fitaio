@@ -18,7 +18,10 @@ interface ModalProps {
 /**
  * @component Modal
  * @description A reusuable modal component created using React.createPortal
- * @interface {ModalProps}
+ * @param {React.ReactNode} children - Modal content
+ * @param {boolean} isOpen - Determines if the modal is displayed or not
+ * @param {() => void} onClose - Callback function that closes the modal
+ * @param {string} target - The element id we are attaching our modal to
  * @returns {JSX.Element} The rendered Modal element
  */
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, target }) => {
