@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 /**
  * @description Type for the Button component's props
  * @property {React.ReactNode} children - The content inside the button
@@ -19,10 +21,16 @@ type ButtonProps = {
 
 /**
  * @component Button
- * @type {React.FC<ButtonProps>}
- * @dev - Width defaults to auto
- * - Width[full] - Sets the width to 100%
- * @dev - Variant defaults to primary
+ * @param {React.ReactNode} children
+ * @param {(e?: React.MouseEvent) => void} onClick
+ * @param {"primary" | "outlined"} variant
+ * @param {"full" | "auto"} width - Width of button
+ *  - "full": Takes width of parent
+ *  - "auto": Standard button
+ * @param {string} icon - Button icon
+ *  - url of icon image
+ * @param {booelan} disabled - Determines if button is enabled/disabled
+ *  - Optional
  * @returns {JSX.Element} The rendered button element
  */
 const Button: React.FC<ButtonProps> = ({
