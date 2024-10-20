@@ -47,7 +47,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={`${
         variant === "primary" ? primaryClasses : secondaryClasses
-      }  ${widthClasses} ${disabledClasses} px-4 py-3 rounded`}
+      }  ${widthClasses} ${disabledClasses} px-4 py-2 rounded`}
     >
       {children}
     </button>
