@@ -70,25 +70,27 @@ const SignUp = () => {
       <div className="max-w-lg w-full">
         <h1 className=" font-bold text-4xl text-center">Create An Account</h1>
         <form className="border-2 border-grayPrimary rounded px-6 py-8 m-2  space-y-6">
-          <TextInput
-            id="username"
-            value={username}
-            onChange={(e) => {
-              usernameOnChange(e);
-            }}
-          >
-            Username
-          </TextInput>
-          <TextInput
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => {
-              passwordOnChange(e);
-            }}
-          >
-            Password
-          </TextInput>
+          <div>
+            <label htmlFor="username">Username</label>
+            <TextInput
+              id="username"
+              value={username}
+              onChange={(e) => {
+                usernameOnChange(e);
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <TextInput
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => {
+                passwordOnChange(e);
+              }}
+            />
+          </div>
           <div className="text-sm space-y-1">
             <p
               className={
