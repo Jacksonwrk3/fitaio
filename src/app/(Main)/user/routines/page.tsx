@@ -5,6 +5,7 @@ import { SessionContext } from "@/app/context/Session/SessionContext";
 import { Button, Modal, Toast } from "@/app/components";
 import { useToast } from "@/app/hooks/useToast";
 import { title } from "process";
+import Link from "next/link";
 const Routines = () => {
   const [displayModal, setDisplayModal] = useState(false);
   const session = useContext(SessionContext);
@@ -28,13 +29,16 @@ const Routines = () => {
     }
   }, [session, router]);
   return (
-    <div className="">
-      <div>Create a Routines</div>
-      <Button>Create a Routine</Button>
-      <Button onClick={openModal}>Toggle Modal</Button>
-      <Modal isOpen={displayModal} onClose={closeModal} target="modal-root">
-        Child
-      </Modal>
+    <div className="border px-5 pt-8 border-red-300">
+      <div className="flex space-y-2 flex-col">
+        <h1 className="text-xl font-bold">Routines</h1>
+        <div className="w-3/5 border-2">
+          {/* Button is taking width of its parent link container, which is taking parent div width */}
+          <Link href="user/routines/new">
+            <Button width="full">Create Routine</Button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
