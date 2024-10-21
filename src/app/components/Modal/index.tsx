@@ -59,6 +59,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, target }) => {
         onClick={(e) => {
           e.stopPropagation();
         }}
+        aria-modal="true"
       >
         <button className="absolute right-8 top-4" onClick={onClose}>
           <Image

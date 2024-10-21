@@ -12,11 +12,12 @@ const Routines = () => {
   const router = useRouter();
 
   const { openToast } = useToast();
-  const closeModal = () => {
+  const closeModal = (e: React.MouseEvent) => {
     setDisplayModal(false);
   };
   const openModal = () => {
-    openToast(<Toast status="error" title="Accounted Created" />, 5000);
+    // openToast(<Toast status="error" title="Accounted Created" />, 5000);
+
     setDisplayModal(true);
   };
   useEffect(() => {
@@ -32,13 +33,22 @@ const Routines = () => {
     <div className="border px-5 pt-8 border-red-300">
       <div className="flex space-y-2 flex-col">
         <h1 className="text-xl font-bold">Routines</h1>
-        <div className="w-3/5 border-2">
-          {/* Button is taking width of its parent link container, which is taking parent div width */}
-          <Link href="user/routines/new">
-            <Button width="full">Create Routine</Button>
-          </Link>
-        </div>
+        <Link href="user/routines/new">
+          <button className="w-40 px-4 bg-blue-600 rounded py-2 text-white">
+            Create Routine
+          </button>
+        </Link>
       </div>
+      <button
+        className="w-40 px-4 bg-blue-600 rounded py-2 text-white"
+        onClick={openModal}
+      >
+        Toggle Modal
+      </button>
+      <Modal isOpen={displayModal} onClose={closeModal} target="modal-root">
+        <div>HELLO</div>
+      </Modal>
+      ;
     </div>
   );
 };
