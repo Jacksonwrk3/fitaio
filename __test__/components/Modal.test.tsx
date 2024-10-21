@@ -2,12 +2,14 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { Modal } from "@/app/components";
 describe("Modal", () => {
   const onClose = jest.fn();
+  //Before every test run this
   beforeAll(() => {
     const modalRoot = document.createElement("div");
     modalRoot.setAttribute("id", "test-modal-root");
     document.body.appendChild(modalRoot);
   });
 
+  //After every test run this
   afterAll(() => {
     const portalRoot = document.getElementById("portal-root");
     if (portalRoot) {
@@ -68,7 +70,16 @@ describe("Modal", () => {
     expect(closeButton).toBeInTheDocument();
   });
 
-  // it("onClose should be called when background container of modal is clicked", () => {});
+  it("onClose should be called when background container of modal is clicked", () => {
+    render(
+      <Modal target="test-modal-root" isOpen={true} onClose={onClose}>
+        Test
+      </Modal>
+    );
+
+    fireEvent.click(document.body);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
 
   it("Shouldn't allowed to be scrolled when modal is opened", () => {
     render(
