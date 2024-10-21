@@ -7,7 +7,6 @@ describe("TextInput", () => {
   const setup = (props = {}) => {
     const defaultProps = {
       id: "test-input",
-      children: "Label",
       placeholder: "Enter text",
       onChange: mockOnChange,
       value: "",
@@ -17,12 +16,10 @@ describe("TextInput", () => {
     return render(<TextInput {...defaultProps} />);
   };
 
-  it("Should render the input and label correctly", () => {
+  it("Should render the input correctly", () => {
     setup();
-    const labelElement = screen.getByText("Label");
     const inputElement = screen.getByPlaceholderText("Enter text");
 
-    expect(labelElement).toBeInTheDocument();
     expect(inputElement).toBeInTheDocument();
   });
 
