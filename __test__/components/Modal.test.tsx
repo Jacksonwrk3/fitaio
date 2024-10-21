@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { Modal } from "@/app/components";
 describe("Modal", () => {
   const onClose = jest.fn();
@@ -39,5 +39,32 @@ describe("Modal", () => {
     expect(modalRoot).toBeInTheDocument();
     const modal = screen.queryByText("Test");
     expect(modal).not.toBeInTheDocument();
+  });
+
+  it("onClose should be called when x image is clicked", () => {
+    render(
+      <Modal target="test-modal-root" isOpen={true} onClose={onClose}>
+        Test
+      </Modal>
+    );
+
+    const modalRoot = document.getElementById("test-modal-root");
+    expect(modalRoot).toBeInTheDocument();
+    const closeButton = screen.getByAltText("Close modal button");
+    fireEvent.click(closeButton);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("x button to close modal should be rendered", () => {
+    render(
+      <Modal target="test-modal-root" isOpen={true} onClose={onClose}>
+        Test
+      </Modal>
+    );
+
+    const modalRoot = document.getElementById("test-modal-root");
+    expect(modalRoot).toBeInTheDocument();
+    const closeButton = screen.getByAltText("Close modal button");
+    expect(closeButton).toBeInTheDocument();
   });
 });
