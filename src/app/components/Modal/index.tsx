@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
-
+import Image from "next/image";
 /**
  * @interface ModalProps
  * @property {React.ReactNode} children - Modal content
@@ -11,7 +11,7 @@ import { createPortal } from "react-dom";
 interface ModalProps {
   children: React.ReactNode;
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (e: React.MouseEvent) => void;
   target: string;
 }
 
@@ -54,9 +54,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, target }) => {
       className="w-screen h-screen absolute top-0 right-0 flex items-center justify-center bg-black bg-opacity-80"
       onClick={onClose}
     >
-      <div className="max-w-3xl  w-[90%] border-1 bg-white border-grayPrimary rounded relative ">
+      <div
+        className="max-w-3xl  w-[90%] border-1 bg-white border-grayPrimary rounded relative z-50"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <button className="absolute right-8 top-4" onClick={onClose}>
-          x
+          <Image
+            src="/close-black.png"
+            alt="Close modal button"
+            height={16}
+            width={16}
+          />
         </button>
         <div className="overflow-y-auto h-[90vh] max-h-[567px]">{children}</div>
       </div>
