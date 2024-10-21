@@ -67,4 +67,8 @@ describe("Modal", () => {
     const closeButton = screen.getByAltText("Close modal button");
     expect(closeButton).toBeInTheDocument();
   });
+
+  it("onClose should be called when background container of modal is clicked", () => {});
+
+  it("Shouldn't allowed to be scrolled when modal is opened", () => {});
 });
