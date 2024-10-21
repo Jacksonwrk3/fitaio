@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Modal } from "@/app/components";
 describe("Modal", () => {
-  const mockFn = jest.fn();
+  const onClose = jest.fn();
   beforeAll(() => {
     const modalRoot = document.createElement("div");
     modalRoot.setAttribute("id", "test-modal-root");
@@ -15,9 +15,9 @@ describe("Modal", () => {
     }
   });
 
-  it("Should render properly", async () => {
+  it("Should render properly", () => {
     render(
-      <Modal target="test-modal-root" isOpen={true} onClose={mockFn}>
+      <Modal target="test-modal-root" isOpen={true} onClose={onClose}>
         Test
       </Modal>
     );
@@ -26,5 +26,18 @@ describe("Modal", () => {
     expect(modalRoot).toBeInTheDocument();
     const modal = screen.getByText("Test");
     expect(modal).toBeInTheDocument();
+  });
+
+  it("Should not render if isOpen is false", () => {
+    render(
+      <Modal target="test-modal-root" isOpen={false} onClose={onClose}>
+        Test
+      </Modal>
+    );
+
+    const modalRoot = document.getElementById("test-modal-root");
+    expect(modalRoot).toBeInTheDocument();
+    const modal = screen.queryByText("Test");
+    expect(modal).not.toBeInTheDocument();
   });
 });
