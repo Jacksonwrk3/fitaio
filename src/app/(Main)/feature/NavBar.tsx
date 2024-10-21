@@ -3,11 +3,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/app/components";
 import { createClient } from "@/app/util/supabase/client";
+import { useState, useEffect } from "react";
 
 /**
  * NavBar component renders a navigation bar with links and a sign-out button.
  */
 const NavBar = () => {
+  const [openHamburger, setOpenHamburger] = useState(false);
+
+  useEffect(() => {}, [openHamburger]);
+
+  const toggleHamburger = () => {
+    setOpenHamburger((prevState) => {
+      return !prevState;
+    });
+  };
   // Get the current pathname from Next.js router
   const pathname = usePathname();
 
@@ -44,11 +54,39 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="border-b py-3 grid grid-cols-3 place-items-center border-bg-grayPrimary ">
+    <nav
+      className={`border-b py-3 grid grid-cols-3 place-items-center border-bg-grayPrimary relative`}
+    >
       <div className="flex items-center">FitAIO</div>
-      <ul className="flex space-x-4 items-center">
+      <button
+        className="flex flex-col justify-center space-y-1.5 h-8 "
+        onClick={toggleHamburger}
+      >
+        <div
+          className={`border w-6 border-black ${
+            openHamburger ? "rotate-45 translate-y-1 duration-100" : "rotate-0"
+          }`}
+        ></div>
+        <div
+          className={`border w-6 border-black ${
+            openHamburger ? "hidden" : "block"
+          }`}
+        ></div>
+        <div
+          className={`border w-6 border-black ${
+            openHamburger
+              ? "-rotate-45 -translate-y-1 duration-100"
+              : "rotate-0"
+          }`}
+        ></div>
+      </button>
+      <ul
+        className={`pl-2 items-center absolute space-y-6   pt-6 top-full -translate-x-full h-72  flex-col border-2 border-blue-500 w-full bg-white   ${
+          openHamburger ? "flex translate-x-0 duration-200" : "opacity-0"
+        }`}
+      >
         {navItems.map((item) => (
-          <li key={item.path}>
+          <li key={item.path} className="w-full flex justify-center">
             <Link
               href={item.path}
               className={`${
@@ -60,10 +98,12 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
+        <div className="w-auto text-center">
+          <button onClick={signout} className="text-red-500">
+            Sign Out{" "}
+          </button>
+        </div>
       </ul>
-      <div>
-        <Button onClick={signout}>Sign Out</Button>
-      </div>
     </nav>
   );
 };
