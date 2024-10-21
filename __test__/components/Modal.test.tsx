@@ -68,7 +68,15 @@ describe("Modal", () => {
     expect(closeButton).toBeInTheDocument();
   });
 
-  it("onClose should be called when background container of modal is clicked", () => {});
+  // it("onClose should be called when background container of modal is clicked", () => {});
 
-  it("Shouldn't allowed to be scrolled when modal is opened", () => {});
+  it("Shouldn't allowed to be scrolled when modal is opened", () => {
+    render(
+      <Modal target="test-modal-root" isOpen={true} onClose={onClose}>
+        Test
+      </Modal>
+    );
+
+    expect(document.body.style.overflowY).toBe("hidden");
+  });
 });
