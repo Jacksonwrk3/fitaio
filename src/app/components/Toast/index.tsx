@@ -13,6 +13,18 @@ interface ToastProps {
   description?: string;
 }
 
+/**
+ * @description Toast Card
+ * @param {string} status - Toast variant
+ *  -"success"
+ *  -"warning"
+ *  -"error"
+ *  -"info"
+ * @param {string} title - Title or heading of the toast
+ * @param {string} description - Description of the toast
+ *  - Optional
+ * @type {ToastProps} - Component props uses ToastProps interface
+ */
 const Toast: React.FC<ToastProps> = ({ status, title, description }) => {
   const { closeToast } = useToast();
   //Background color of the toast
