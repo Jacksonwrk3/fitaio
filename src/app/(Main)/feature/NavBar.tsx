@@ -55,11 +55,11 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`border-b py-3 grid grid-cols-3 place-items-center border-bg-grayPrimary relative`}
+      className={`border-b  w-full py-3 flex  justify-between place-items-center border-grayPrimary relative`}
     >
-      <div className="flex items-center">FitAIO</div>
+      <div className="ml-5 flex items-center md:ml-0">FitAIO</div>
       <button
-        className="flex flex-col justify-center space-y-1.5 h-8 "
+        className="flex flex-col justify-center space-y-1.5 h-8 mr-5 md:hidden "
         onClick={toggleHamburger}
       >
         <div
