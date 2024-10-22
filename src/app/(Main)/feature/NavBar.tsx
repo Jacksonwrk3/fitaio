@@ -28,7 +28,7 @@ const NavBar = () => {
   const navItems = [
     { name: "Routine", path: "/user/routines" },
     { name: "Programs", path: "/user/programs" },
-    { name: "Find a Coach", path: "/user/find-a-coach" },
+    { name: "Coaches", path: "/user/find-a-coach" },
     { name: "Be a Coach", path: "/user/be-a-coach" },
   ];
 
@@ -55,9 +55,11 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`border-b  w-full py-3 flex  justify-between place-items-center border-grayPrimary relative`}
+      className={`relative w-full py-3 flex  justify-between  md:justify-start md:flex-col  md:py-5 md:px-2 md:w-auto md:h-screen border-2 border-orange-300 md:space-y-8`}
     >
-      <div className="ml-5 flex items-center md:ml-0">FitAIO</div>
+      <div className="ml-5 flex items-center md:ml-0 md:col-span-1 md:justify-center">
+        FitAIO
+      </div>
       <button
         className="flex flex-col justify-center space-y-1.5 h-8 mr-5 md:hidden "
         onClick={toggleHamburger}
@@ -81,12 +83,17 @@ const NavBar = () => {
         ></div>
       </button>
       <ul
-        className={`pl-2 items-center absolute space-y-6   pt-6 top-full -translate-x-full h-72  flex-col border-2 border-blue-500 w-full bg-white   ${
-          openHamburger ? "flex translate-x-0 duration-200" : "opacity-0"
+        className={`flex pl-2 items-center absolute space-y-6   pt-6 top-full -translate-x-full h-72  flex-col  w-full bg-white md:pl-0 md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow md:border-2 border-green-500   ${
+          openHamburger
+            ? "flex translate-x-0 duration-200"
+            : "opacity-0 md:opacity-100"
         }`}
       >
         {navItems.map((item) => (
-          <li key={item.path} className="w-full flex justify-center">
+          <li
+            key={item.path}
+            className="w-auto  flex justify-center md:text-center"
+          >
             <Link
               href={item.path}
               className={`${
@@ -98,9 +105,9 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
-        <div className="w-auto text-center">
-          <button onClick={signout} className="text-red-500">
-            Sign Out{" "}
+        <div className="w-auto text-center pt-auto">
+          <button onClick={signout} className="text-red-500 ">
+            Sign Out
           </button>
         </div>
       </ul>

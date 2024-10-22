@@ -12,9 +12,9 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div id="modal-root">
+    <div id="modal-root" className="border-2 border-purple-500 md:flex">
       <NavBar />
-      <main>{children}</main>
+      <main className="md:h-screen md:w-full">{children}</main>
     </div>
   );
 }

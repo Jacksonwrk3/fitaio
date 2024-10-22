@@ -30,7 +30,7 @@ const Routines = () => {
     }
   }, [session, router]);
   return (
-    <div className="border px-5 pt-8 border-red-300">
+    <div className="border px-5 pt-8 border-red-300 md:px-0 md:pt-0 h-screen">
       <div className="flex space-y-2 flex-col">
         <h1 className="text-xl font-bold">Routines</h1>
         <Link href="user/routines/new">
