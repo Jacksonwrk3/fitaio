@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 /**
  * NavBar component renders a navigation bar with links and a sign-out button.
+ * @TODO write test
  */
 const NavBar = () => {
   // State to control the hamburger menu's open/close status
