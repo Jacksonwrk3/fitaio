@@ -10,6 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         grayPrimary: "#e2e8f0",
+        primary: "#353535", // Dark gray for text
+        accent: "#3C6E71", // Teal for buttons and links
+        background: "#FFFFFF", // White for background
+        "background-muted": "#D9D9D9", // Light gray for dividers and containers
+        "primary-dark": "#284B63", // Dark blue for headings, navbar, and hover
       },
       screens: {
         xs: "480px",
