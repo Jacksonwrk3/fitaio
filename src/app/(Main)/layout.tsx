@@ -14,7 +14,7 @@ export default function MainLayout({
   return (
     <div id="modal-root" className=" md:flex overflow-y-hidden bg-gray-100">
       <NavBar />
-      <main className="md:w-screen md:max-w-5xl   md:mr-auto  md:ml-auto ">
+      <main className="md:w-3/4 md:max-w-5xl border border-red-300  md:mr-auto  md:ml-auto ">
         {children}
       </main>
     </div>
