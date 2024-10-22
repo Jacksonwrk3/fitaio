@@ -71,6 +71,7 @@ const Typography: React.FC<TypographyProps> = ({ children, as }) => {
       break;
   }
 
+  let classes =
   return createElement(as, classes, children);
 };
 
