@@ -60,7 +60,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed bg-white md:static w-full py-3 flex  justify-between  md:justify-start md:flex-col  md:py-5 md:px-2 md:w-auto md:h-screen border-b border-grayPrimary md:border-0 md:space-y-8 `}
+      className={`fixed bg-white md:static w-full py-3 flex  justify-between  md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-28 border-b border-grayPrimary md:border-0 md:space-y-8 `}
     >
       {/* Logo or branding */}
       <div className="ml-5 flex items-center md:ml-0 md:col-span-1 md:justify-center">
