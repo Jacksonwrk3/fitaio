@@ -30,7 +30,7 @@ const Routines = () => {
     }
   }, [session, router]);
   return (
-    <div className="border px-5 pt-8 border-red-300 md:px-0 md:pt-0 h-screen">
+    <div className="px-5 pt-24  md:px-0 md:pt-12 h-screen overflow-y-auto">
       <div className="flex space-y-2 flex-col">
         <h1 className="text-xl font-bold">Routines</h1>
         <Link href="user/routines/new">
@@ -48,7 +48,6 @@ const Routines = () => {
       <Modal isOpen={displayModal} onClose={closeModal} target="modal-root">
         <div>HELLO</div>
       </Modal>
-      ;
     </div>
   );
 };

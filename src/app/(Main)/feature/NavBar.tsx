@@ -55,7 +55,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`relative w-full py-3 flex  justify-between  md:justify-start md:flex-col  md:py-5 md:px-2 md:w-auto md:h-screen border-2 border-orange-300 md:space-y-8`}
+      className={`fixed bg-white md:static w-full py-3 flex  justify-between  md:justify-start md:flex-col  md:py-5 md:px-2 md:w-auto md:h-screen border-b border-grayPrimary md:border-0 md:space-y-8 `}
     >
       <div className="ml-5 flex items-center md:ml-0 md:col-span-1 md:justify-center">
         FitAIO
@@ -83,7 +83,7 @@ const NavBar = () => {
         ></div>
       </button>
       <ul
-        className={`flex pl-2 items-center absolute space-y-6   pt-6 top-full -translate-x-full h-72  flex-col  w-full bg-white md:pl-0 md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow md:border-2 border-green-500   ${
+        className={` flex pl-2 items-center absolute space-y-6   pt-6 top-[101%]  -translate-x-full h-72  flex-col  w-full bg-white md:pl-0 md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow   ${
           openHamburger
             ? "flex translate-x-0 duration-200"
             : "opacity-0 md:opacity-100"
@@ -105,7 +105,7 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
-        <div className="w-auto text-center pt-auto">
+        <div className="w-auto text-center md:grow md:flex md:items-end">
           <button onClick={signout} className="text-red-500 ">
             Sign Out
           </button>

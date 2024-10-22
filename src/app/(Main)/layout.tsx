@@ -12,9 +12,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div id="modal-root" className="border-2 border-purple-500 md:flex">
+    <div id="modal-root" className=" md:flex overflow-y-hidden">
       <NavBar />
-      <main className="md:h-screen md:w-full">{children}</main>
+      <main className="md:w-screen md:max-w-5xl   md:mr-auto  md:ml-auto ">
+        {children}
+      </main>
     </div>
   );
 }
