@@ -30,25 +30,16 @@ const Routines = () => {
     }
   }, [session, router]);
   return (
-    <div className="px-5 pt-24  md:px-0 md:pt-12 h-screen overflow-y-auto">
+    <>
       <div className="flex space-y-2 flex-col">
         <h1 className="text-xl font-bold">Routines</h1>
-        <Link href="user/routines/new">
-          <button className="w-40 px-4 bg-blue-600 rounded py-2 text-white">
+        <Link href="routines/new">
+          <button className="w-40 px-4 bg-violet-500 rounded py-2 text-white">
             Create Routine
           </button>
         </Link>
       </div>
-      <button
-        className="w-40 px-4 bg-blue-600 rounded py-2 text-white"
-        onClick={openModal}
-      >
-        Toggle Modal
-      </button>
-      <Modal isOpen={displayModal} onClose={closeModal} target="modal-root">
-        <div>HELLO</div>
-      </Modal>
-    </div>
+    </>
   );
 };
 
