@@ -22,8 +22,7 @@ interface TextProps {
     | "text-6xl"
     | "text-7xl"
     | "text-8xl"
-    | "text-9xl"
-    | string;
+    | "text-9xl";
   children?: string;
   as?:
     | "h1"
@@ -48,6 +47,7 @@ interface TextProps {
     | "text-justify"
     | "text-start"
     | "text-end";
+  color?: "white";
 }
 
 /**
@@ -56,6 +56,7 @@ interface TextProps {
  * @param {string} [as="p"] - Which HTML element the component will represent
  *    - Defaults to "p".
  * @param {string} [fontSize="text-base"] - Tailwind CSS font size class
+ *    - Options: "text-xs", "text-sm", "text-base", "text-lg", "text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl", "text-7xl", "text-8xl", "text-9xl"
  *    - Defaults to "text-base".
  *    - See the [Font Size Documentation](https://tailwindcss.com/docs/font-size).
  * @param {string} [casing="normal-case"] - Text-transform property
@@ -66,6 +67,7 @@ interface TextProps {
  *    - Options: "text-left", "text-center", "text-right", "text-justify", "text-start", "text-end".
  *    - Defaults to "text-left".
  *    - See the [Text Alignment Documentation](https://tailwindcss.com/docs/text-align).
+ * @param {string}
  */
 
 const Text: React.FC<TextProps> = ({
@@ -74,6 +76,7 @@ const Text: React.FC<TextProps> = ({
   fontSize = "text-base",
   casing = "normal-case",
   align = "text-left",
+  color,
 }) => {
   let textColor;
   switch (as) {
@@ -99,7 +102,9 @@ const Text: React.FC<TextProps> = ({
       textColor = "text-primary";
       break;
   }
-
+  if (color === "white") {
+    textColor = "text-white";
+  }
   const className = `${textColor} ${fontSize} ${casing} ${align}`;
   return createElement(as, { className: className }, children);
 };
