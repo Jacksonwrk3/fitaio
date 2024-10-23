@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "@/app/components";
 import { createClient } from "@/app/util/supabase/client";
 import { useState, useEffect } from "react";
-import path from "path";
+import Image from "next/image";
 
 /**
  * NavBar component renders a navigation bar with links and a sign-out button.
@@ -32,10 +31,14 @@ const NavBar = () => {
 
   // Navigation items to be displayed in the navbar
   const navItems = [
-    { name: "Workouts", path: "/user/workouts" },
-    { name: "Programs", path: "/user/programs" },
-    { name: "Coaches", path: "/user/find-a-coach" },
-    { name: "Be a Coach", path: "/user/be-a-coach" },
+    {
+      name: "Workouts",
+      path: "/user/workouts",
+      iconPassive: "/dumbbell-black.png",
+    },
+    { name: "Programs", path: "/user/programs", iconPassive: "/calendar.png" },
+    { name: "Coaches", path: "/user/find-a-coach", iconPassive: "/coach.png" },
+    { name: "Be a Coach", path: "/user/be-a-coach", iconPassive: "" },
   ];
 
   // CSS classes for active and passive links
