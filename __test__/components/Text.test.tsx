@@ -64,4 +64,12 @@ describe("Text Component", () => {
     expect(textElement.tagName).toBe("H2");
     expect(textElement).toHaveClass("text-dark text-xl capitalize text-right");
   });
+  it("should render with white color", () => {
+    const { getByText } = render(<Text color="white">Hello, World!</Text>);
+
+    const textElement = getByText("Hello, World!");
+
+    // Check if the element has the correct class for white color
+    expect(textElement).toHaveClass("text-white");
+  });
 });
