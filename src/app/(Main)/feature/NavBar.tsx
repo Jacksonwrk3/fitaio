@@ -35,10 +35,26 @@ const NavBar = () => {
       name: "Workouts",
       path: "/user/workouts",
       iconPassive: "/dumbbell-black.png",
+      iconActive: "/dumbbell-primary.png",
     },
-    { name: "Programs", path: "/user/programs", iconPassive: "/calendar.png" },
-    { name: "Coaches", path: "/user/find-a-coach", iconPassive: "/coach.png" },
-    { name: "Be a Coach", path: "/user/be-a-coach", iconPassive: "" },
+    {
+      name: "Programs",
+      path: "/user/programs",
+      iconPassive: "/calendar.png",
+      iconActive: "/calendar-primary",
+    },
+    {
+      name: "Coaches",
+      path: "/user/find-a-coach",
+      iconPassive: "/coach.png",
+      iconActive: "/coach-primary",
+    },
+    {
+      name: "Be a Coach",
+      path: "/user/be-a-coach",
+      iconPassive: "/form",
+      iconActive: "/form-primary",
+    },
   ];
 
   // CSS classes for active and passive links
@@ -64,9 +80,9 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed px-5 bg-white    md:static w-full py-3 flex   md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-28  md:border-0 md:space-y-8 `}
+      className={`border-red-300 border fixed  bg-white    md:static w-full py-3 flex   md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-28   md:space-y-8 `}
     >
-      <div className="flex  justify-center items-center">
+      <div className="flex  justify-center items-center ml-5">
         {/* Hamburger menu button */}
         <button
           className="flex flex-col justify-center space-y-1.5 h-8 mr-5 md:hidden "
@@ -100,7 +116,7 @@ const NavBar = () => {
       </div>
       {/* Navigation links */}
       <ul
-        className={` flex bg-white  pl-2 duration-200 items-center  absolute space-y-6   pt-6 top-[101%]  -translate-x-full h-72  flex-col  w-full  md:pl-0 md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow   ${
+        className={` flex bg-white border-blue-300 border  duration-200 items-center  absolute space-y-6   pt-6 top-[101%]  -translate-x-full h-72  flex-col  w-full   md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow   ${
           openHamburger
             ? "flex translate-x-0  border-t border-grayPrimary md:border-0" // If hamburger is open, slide in the menu
             : "opacity-0 md:opacity-100  " // Hide menu on smaller screens if hamburger is closed
