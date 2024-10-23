@@ -32,7 +32,7 @@ const NavBar = () => {
 
   // Navigation items to be displayed in the navbar
   const navItems = [
-    { name: "Routine", path: "/user/routines" },
+    { name: "Workouts", path: "/user/workouts" },
     { name: "Programs", path: "/user/programs" },
     { name: "Coaches", path: "/user/find-a-coach" },
     { name: "Be a Coach", path: "/user/be-a-coach" },

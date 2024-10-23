@@ -6,7 +6,7 @@ import { Button, Modal, Toast } from "@/app/components";
 import { useToast } from "@/app/hooks/useToast";
 import { title } from "process";
 import Link from "next/link";
-const Routines = () => {
+const Workouts = () => {
   const [displayModal, setDisplayModal] = useState(false);
   const session = useContext(SessionContext);
   const router = useRouter();
@@ -32,10 +32,10 @@ const Routines = () => {
   return (
     <>
       <div className="flex space-y-2 flex-col">
-        <h1 className="text-xl font-bold">Routines</h1>
-        <Link href="routines/new">
+        <h1 className="text-xl font-bold">Workouts</h1>
+        <Link href="workouts/new">
           <button className="w-40 px-4 bg-violet-500 rounded py-2 text-white">
-            Create Routine
+            Create Workout
           </button>
         </Link>
       </div>
@@ -43,4 +43,4 @@ const Routines = () => {
   );
 };
 
-export default Routines;
+export default Workouts;
