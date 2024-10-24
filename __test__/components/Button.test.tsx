@@ -19,7 +19,7 @@ describe("Button", () => {
   it("should render the button with the primary variant", () => {
     render(<Button variant="primary">Primary Button</Button>);
     const button = screen.getByText("Primary Button");
-    expect(button).toHaveClass("bg-blue-600 text-white");
+    expect(button).toHaveClass("bg-primary-500 text-white");
   });
 
   it("should render the button with the outlined variant", () => {
@@ -31,7 +31,7 @@ describe("Button", () => {
   it("should render the button with the primary variant if variant is not provided", () => {
     render(<Button>Test</Button>);
     const button = screen.getByText("Test");
-    expect(button).toHaveClass("bg-blue-600 text-white");
+    expect(button).toHaveClass("bg-primary-500 text-white");
   });
 
   it("Button should not be clickable if it is disabled", () => {
