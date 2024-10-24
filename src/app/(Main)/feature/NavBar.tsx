@@ -5,6 +5,7 @@ import { createClient } from "@/app/util/supabase/client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Text } from "@/app/components";
+import { NavigationItems, NavigationItem } from "./navItems.types";
 /**
  * NavBar component renders a navigation bar with links and a sign-out button.
  * @TODO write test
@@ -43,7 +44,7 @@ const NavBar = () => {
   const supabase = createClient();
 
   // Navigation items to be displayed in the navbar
-  const navItems = [
+  const navItems: NavigationItems = [
     {
       name: "Workouts",
       path: "/user/workouts",
@@ -140,46 +141,48 @@ const NavBar = () => {
               : "opacity-0 md:opacity-100  " // Hide menu on smaller screens if hamburger is closed
           }`}
         >
-          {navItems.map((item) => (
-            <li
-              key={item.path}
-              className="w-full flex justify-center items-center space-x-2 md:text-center  "
-              onClick={toggleHamburger}
-            >
-              {/* Generate links with dynamic styles based on active route */}
+          {navItems.map((item) => {
+            const isActive = pathname.startsWith(item.path); // Check once and store the result
+
+            return (
               <Link
                 href={item.path}
                 className={`${
-                  pathname.startsWith(item.path)
-                    ? activeLinkClasses
-                    : passiveLinkClasses
-                } `}
-                aria-current={
-                  pathname.startsWith(item.path) ? "page" : undefined
-                }
+                  isActive ? activeLinkClasses : passiveLinkClasses
+                }`}
+                aria-current={isActive ? "page" : undefined}
               >
-                {item.name}
+                <li
+                  key={item.path}
+                  className="w-full flex justify-center items-center space-x-2 md:text-center"
+                  onClick={toggleHamburger}
+                >
+                  {/* Generate links with dynamic styles based on active route */}
+
+                  <Text as="span" color={isActive ? "primary" : "black"}>
+                    {item.name}
+                  </Text>
+
+                  <Image
+                    src={isActive ? item.iconActive : item.iconPassive}
+                    alt={item.alt}
+                    width={16}
+                    height={16}
+                  />
+                </li>
               </Link>
-              <Image
-                src={
-                  pathname.startsWith(item.path)
-                    ? item.iconActive
-                    : item.iconPassive
-                }
-                alt={item.alt}
-                width={16}
-                height={16}
-              />
-            </li>
-          ))}
+            );
+          })}
 
           {/* Sign Out button */}
           <div className="w-full text-center md:grow md:flex md:items-end ">
             <button
               onClick={signout}
-              className="text-red-500 flex space-x-2  items-center justify-center w-full "
+              className=" flex space-x-2  items-center justify-center w-full "
             >
-              <Text as="span">Sign Out</Text>
+              <Text as="span" color="red">
+                Sign Out
+              </Text>
               <Image src="/logout.png" alt="Exit Icon" width={16} height={16} />
             </button>
           </div>
