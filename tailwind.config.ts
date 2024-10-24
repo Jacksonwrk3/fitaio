@@ -11,15 +11,15 @@ const config: Config = {
       colors: {
         containerGray: "#e2e8f0",
         primary: {
-          100: "text-violet-100", // Lightest shade
-          200: "text-violet-200",
-          300: "text-violet-300",
-          400: "text-violet-400",
-          500: "text-violet-500", // Default primary shade
-          600: "text-violet-600",
-          700: "text-violet-700",
-          800: "text-violet-800",
-          900: "text-violet-900", // Darkest shade
+          100: "#ede9fe", // text-violet-100
+          200: "#ddd6fe", // text-violet-200
+          300: "#c4b5fd", // text-violet-300
+          400: "#a78bfa", // text-violet-400
+          500: "#8b5cf6", // text-violet-500
+          600: "#7c3aed", // text-violet-600
+          700: "#6d28d9", // text-violet-700
+          800: "#5b21b6", // text-violet-800
+          900: "#4c1d95", // text-violet-900
         },
       },
       screens: {

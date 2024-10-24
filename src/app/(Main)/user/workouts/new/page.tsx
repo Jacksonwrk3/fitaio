@@ -1,5 +1,10 @@
+import Link from "next/link";
 const WorkoutsNew = () => {
-  return <div>Workouts New</div>;
+  return (
+    <Link href="/user/workouts">
+      <span className="text-primary-400">Back to workouts</span>
+    </Link>
+  );
 };
 
 export default WorkoutsNew;
