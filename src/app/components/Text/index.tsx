@@ -116,7 +116,7 @@ const Text: React.FC<TextProps> = ({
       textColor = "text-primary";
       break;
     case "black":
-      textColor = "black";
+      textColor = "text-black";
       break;
   }
   const className = `${textColor} ${fontSize} ${casing} ${align}`;
