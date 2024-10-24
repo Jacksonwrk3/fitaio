@@ -185,8 +185,9 @@ const NavBar = () => {
       {/* Puts overlay over entire screen so we can change background color/opacity when hamburger menu is opened */}
       <div
         className={`absolute top-0 left-0 w-screen h-screen md:hidden ${
-          openHamburger ? "opacity-50 bg-black" : ""
+          openHamburger ? "opacity-50 bg-black" : "hidden"
         }`}
+        onClick={toggleHamburger}
       ></div>
     </>
   );
