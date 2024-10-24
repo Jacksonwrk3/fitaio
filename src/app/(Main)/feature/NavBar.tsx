@@ -99,7 +99,7 @@ const NavBar = () => {
   return (
     <>
       <nav //md-28
-        className={`  fixed  bg-white  z-50  md:static w-full py-3 flex   md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-40    md:space-y-8 `}
+        className={`  fixed  bg-white  z-50  md:static w-full py-3 flex   md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-40    md:space-y-8 md:border-r border-grayPrimary`}
       >
         <div className="flex  justify-center items-center ml-5 md:ml-0">
           {/* Hamburger menu button */}
