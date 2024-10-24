@@ -51,12 +51,12 @@ const TextInput: React.FC<TextInputProps> = ({
     }
   }, []);
   return (
-    <div className=" relative flex items-center border border-grayPrimary">
+    <div className=" relative flex items-center border border-grayPrimary rounded">
       <input
         type={isVisible ? "text" : "password"}
         id={id}
         name={id}
-        className=" rounded py-2 pl-4 w-full"
+        className="  py-2 pl-4 w-full focus:outline-none focus:ring-0 box-border focus:border  focus:border-primary-500 focus:bg-primary-100"
         placeholder={placeholder}
         onChange={(e) => {
           onChange(e);
@@ -65,7 +65,7 @@ const TextInput: React.FC<TextInputProps> = ({
       />
       {type === "password" && (
         <div
-          className="text-blue-500 absolute right-0 mr-4 cursor-pointer"
+          className="text-primary-500 absolute right-0 mr-4 cursor-pointer"
           onClick={toggleVisibility}
         >
           {isVisible ? "Hide" : "Show"}
