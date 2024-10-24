@@ -1,5 +1,6 @@
 import { create } from "domain";
 import React, { createElement } from "react";
+import { text } from "stream/consumers";
 /**
  * @interface TextProps
  * @property {string} children - Text to be displayed
@@ -47,7 +48,7 @@ interface TextProps {
     | "text-justify"
     | "text-start"
     | "text-end";
-  color?: "white";
+  color?: "white" | "red";
 }
 
 /**
@@ -102,8 +103,12 @@ const Text: React.FC<TextProps> = ({
       textColor = "text-primary";
       break;
   }
-  if (color === "white") {
-    textColor = "text-white";
+  switch (color) {
+    case "white":
+      textColor = "text-white";
+      break;
+    case "red":
+      textColor = "text-red-500";
   }
   const className = `${textColor} ${fontSize} ${casing} ${align}`;
   return createElement(as, { className: className }, children);

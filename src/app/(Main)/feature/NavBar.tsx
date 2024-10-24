@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { createClient } from "@/app/util/supabase/client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-
+import { Text } from "@/app/components";
 /**
  * NavBar component renders a navigation bar with links and a sign-out button.
  * @TODO write test
@@ -175,12 +175,13 @@ const NavBar = () => {
 
           {/* Sign Out button */}
           <div className="w-full text-center md:grow md:flex md:items-end ">
-            <div className="flex space-x-2 items-center justify-center w-full">
-              <button onClick={signout} className="text-red-500 ">
-                Sign Out
-              </button>
+            <button
+              onClick={signout}
+              className="text-red-500 flex space-x-2  items-center justify-center w-full "
+            >
+              <Text as="span">Sign Out</Text>
               <Image src="/logout.png" alt="Exit Icon" width={16} height={16} />
-            </div>
+            </button>
           </div>
         </ul>
       </nav>
