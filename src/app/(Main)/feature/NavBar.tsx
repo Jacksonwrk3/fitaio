@@ -36,24 +36,28 @@ const NavBar = () => {
       path: "/user/workouts",
       iconPassive: "/dumbbell-black.png",
       iconActive: "/dumbbell-primary.png",
+      alt: "dumbbell icon",
     },
     {
       name: "Programs",
       path: "/user/programs",
       iconPassive: "/calendar.png",
-      iconActive: "/calendar-primary",
+      iconActive: "/calendar-primary.png",
+      alt: "calendar icon",
     },
     {
       name: "Coaches",
       path: "/user/find-a-coach",
       iconPassive: "/coach.png",
-      iconActive: "/coach-primary",
+      iconActive: "/coach-primary.png",
+      alt: "coach icon",
     },
     {
       name: "Be a Coach",
       path: "/user/be-a-coach",
-      iconPassive: "/form",
-      iconActive: "/form-primary",
+      iconPassive: "/form.png",
+      iconActive: "/form-primary.png",
+      alt: "form icon",
     },
   ];
 
@@ -79,10 +83,10 @@ const NavBar = () => {
   };
 
   return (
-    <nav
-      className={`border-red-300 border fixed  bg-white    md:static w-full py-3 flex   md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-28   md:space-y-8 `}
+    <nav //md-28
+      className={` fixed  bg-white    md:static w-full py-3 flex   md:justify-start md:flex-col  md:py-5 md:px-2  md:h-screen md:w-40   md:space-y-8 `}
     >
-      <div className="flex  justify-center items-center ml-5">
+      <div className="flex  justify-center items-center ml-5 md:ml-0">
         {/* Hamburger menu button */}
         <button
           className="flex flex-col justify-center space-y-1.5 h-8 mr-5 md:hidden "
@@ -116,7 +120,7 @@ const NavBar = () => {
       </div>
       {/* Navigation links */}
       <ul
-        className={` flex bg-white border-blue-300 border  duration-200 items-center  absolute space-y-6   pt-6 top-[101%]  -translate-x-full h-72  flex-col  w-full   md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow   ${
+        className={` flex bg-white   duration-200 items-center  absolute space-y-6   pt-6 top-[101%]  -translate-x-full h-72  flex-col  w-full   md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow   ${
           openHamburger
             ? "flex translate-x-0  border-t border-grayPrimary md:border-0" // If hamburger is open, slide in the menu
             : "opacity-0 md:opacity-100  " // Hide menu on smaller screens if hamburger is closed
@@ -125,7 +129,7 @@ const NavBar = () => {
         {navItems.map((item) => (
           <li
             key={item.path}
-            className="w-auto flex justify-center md:text-center "
+            className="w-auto flex justify-center items-center space-x-2 md:text-center  "
             onClick={toggleHamburger}
           >
             {/* Generate links with dynamic styles based on active route */}
@@ -140,14 +144,27 @@ const NavBar = () => {
             >
               {item.name}
             </Link>
+            <Image
+              src={
+                pathname.startsWith(item.path)
+                  ? item.iconActive
+                  : item.iconPassive
+              }
+              alt={item.alt}
+              width={16}
+              height={16}
+            />
           </li>
         ))}
 
         {/* Sign Out button */}
-        <div className="w-auto text-center md:grow md:flex md:items-end">
-          <button onClick={signout} className="text-red-500 ">
-            Sign Out
-          </button>
+        <div className="w-full text-center md:grow md:flex md:items-end ">
+          <div className="flex space-x-2 items-center justify-center">
+            <button onClick={signout} className="text-red-500 ">
+              Sign Out
+            </button>
+            <Image src="/logout.png" alt="Exit Icon" width={16} height={16} />
+          </div>
         </div>
       </ul>
     </nav>
