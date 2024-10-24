@@ -19,7 +19,7 @@ export default function MainLayout({
       <NavBar />
       <main
         id="content-container"
-        className="pt-16 md:pt-0 md:w-3/4 md:max-w-5xl md:mr-auto  md:ml-auto px-5 md:px-0 "
+        className=" md:w-3/4 md:max-w-5xl md:mr-auto  md:ml-auto px-5 md:px-0 "
       >
         <div className="overflow-y-auto">{children}</div>
       </main>
