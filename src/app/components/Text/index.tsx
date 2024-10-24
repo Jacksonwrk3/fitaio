@@ -63,6 +63,7 @@ interface TextProps {
 }
 
 /**
+ * @deprecated Don't see the point since I only use 3 different colors and a bunch of tailwind classes
  * @description Text Component
  * @param {React.ReactNode} children - Text to be displayed.
  * @param {string} [as="p"] - Which HTML element the component will represent. Defaults to "p".
@@ -92,7 +93,7 @@ const Text: React.FC<TextProps> = ({
   fontSize = "text-base",
   casing = "normal-case",
   align = "text-left",
-  color,
+  color = "black",
   fontWeight = "font-normal",
 }) => {
   let textColor;
@@ -103,7 +104,7 @@ const Text: React.FC<TextProps> = ({
     case "h4":
     case "h5":
     case "h6":
-      textColor = "text-dark";
+      textColor = "text-black";
       break;
     case "p":
     case "span":
@@ -113,10 +114,10 @@ const Text: React.FC<TextProps> = ({
     case "mark":
     case "del":
     case "ins":
-      textColor = "text-primary";
+      textColor = "text-black";
       break;
     default:
-      textColor = "text-primary";
+      textColor = "text-black";
       break;
   }
   switch (color) {
