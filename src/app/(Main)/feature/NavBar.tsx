@@ -154,7 +154,7 @@ const NavBar = () => {
               >
                 <li
                   key={item.path}
-                  className="w-full flex justify-center items-center space-x-2 md:text-center"
+                  className="w-full flex justify-center items-center space-x-2 md:text-center "
                   onClick={toggleHamburger}
                 >
                   {/* Generate links with dynamic styles based on active route */}
