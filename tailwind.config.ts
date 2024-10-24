@@ -9,12 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        grayPrimary: "text-red-500",
-        primary: "#8b5cf6", // Violet
-        accent: "#3C6E71", // Teal for buttons and links
-        background: "#FFFFFF", // White for background
-        "background-muted": "#D9D9D9", // Light gray for dividers and containers
-        "primary-dark": "#284B63", // Dark blue for headings, navbar, and hover
+        containerGray: "#e2e8f0",
+        primary: {
+          100: "text-violet-100", // Lightest shade
+          200: "text-violet-200",
+          300: "text-violet-300",
+          400: "text-violet-400",
+          500: "text-violet-500", // Default primary shade
+          600: "text-violet-600",
+          700: "text-violet-700",
+          800: "text-violet-800",
+          900: "text-violet-900", // Darkest shade
+        },
       },
       screens: {
         xs: "480px",

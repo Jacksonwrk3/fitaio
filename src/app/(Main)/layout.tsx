@@ -18,9 +18,7 @@ export default function MainLayout({
         id="content-container"
         className="md:w-3/4 md:max-w-5xl  md:mr-auto  md:ml-auto  z-50"
       >
-        <div className=" px-5 pt-24  md:px-0 md:pt-12 h-screen overflow-y-auto">
-          {children}
-        </div>
+        <div className=" h-screen overflow-y-auto">{children}</div>
       </main>
     </div>
   );

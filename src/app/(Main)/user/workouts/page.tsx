@@ -30,18 +30,16 @@ const Workouts = () => {
     }
   }, [session, router]);
   return (
-    <>
-      <div className="flex space-y-2 flex-col">
-        <Text as="h1" fontSize="text-xl">
-          Workouts
-        </Text>
+    <div className=" px-5 pt-24  md:px-0 md:pt-12">
+      <div className="flex justify-between ">
+        <h1 className="text-xl font-bold">Workouts</h1>
         <Link href="workouts/new">
           <button className="w-40 px-4 bg-violet-500 rounded py-2 text-white">
             Create Workout
           </button>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

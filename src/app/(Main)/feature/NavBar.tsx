@@ -137,7 +137,7 @@ const NavBar = () => {
         <ul
           className={` flex bg-white   duration-200 items-center  absolute space-y-6   pt-6 top-full  -translate-x-full h-72  flex-col  w-full   md:static  md:h-auto md:w-auto  md:translate-x-0 md:space-y-4  md:pt-0 md:flex-col md:grow   ${
             openHamburger
-              ? "flex translate-x-0 border-t  border-grayPrimary md:border-0 " // If hamburger is open, slide in the menu
+              ? "flex translate-x-0 border-t  border-containerGray md:border-0 " // If hamburger is open, slide in the menu
               : "opacity-0 md:opacity-100  " // Hide menu on smaller screens if hamburger is closed
           }`}
         >
