@@ -41,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   disabled = false,
 }) => {
-  const primaryClasses = "bg-blue-600 text-white hover:bg-blue-700";
+  const primaryClasses = "bg-primary-500 text-white hover:bg-primary-600";
   const secondaryClasses =
     "bg-white hover:bg-gray-100 border-grayPrimary border text-black";
   const widthClasses = width === "full" ? "w-full" : "w-auto";
