@@ -30,7 +30,7 @@ const Workouts = () => {
     }
   }, [session, router]);
   return (
-    <div className="pt-12">
+    <div className="pt-8">
       <div className="flex justify-between ">
         <h1 className="text-xl font-bold">Workouts</h1>
         <Link href="workouts/new">
