@@ -48,7 +48,7 @@ interface TextProps {
     | "text-justify"
     | "text-start"
     | "text-end";
-  color?: "white" | "red";
+  color?: "white" | "red" | "primary" | "black";
 }
 
 /**
@@ -68,7 +68,9 @@ interface TextProps {
  *    - Options: "text-left", "text-center", "text-right", "text-justify", "text-start", "text-end".
  *    - Defaults to "text-left".
  *    - See the [Text Alignment Documentation](https://tailwindcss.com/docs/text-align).
- * @param {string}
+ * @param {string} color - color of text
+ *    - Options: "red", "white", "primary", "black"
+ *    - Color determined by element type if prop not provided
  */
 
 const Text: React.FC<TextProps> = ({
@@ -109,6 +111,13 @@ const Text: React.FC<TextProps> = ({
       break;
     case "red":
       textColor = "text-red-500";
+      break;
+    case "primary":
+      textColor = "text-primary";
+      break;
+    case "black":
+      textColor = "black";
+      break;
   }
   const className = `${textColor} ${fontSize} ${casing} ${align}`;
   return createElement(as, { className: className }, children);
