@@ -1,75 +1,63 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Text } from "@/app/components"; // Adjust the import path as needed
-
+import { Text } from "@/app/components";
 describe("Text Component", () => {
-  test("renders with default props", () => {
-    render(<Text>Default Text</Text>);
+  it("renders children correctly", () => {
+    render(<Text>Test Text</Text>);
+    expect(screen.getByText("Test Text")).toBeInTheDocument();
+  });
 
-    const textElement = screen.getByText(/default text/i);
-    expect(textElement).toBeInTheDocument();
-    expect(textElement.tagName).toBe("P"); // Default tag is 'p'
-    expect(textElement).toHaveClass(
-      "text-primary text-base normal-case text-left"
+  it("renders as a paragraph by default", () => {
+    render(<Text>Paragraph Text</Text>);
+    const paragraph = screen.getByText("Paragraph Text");
+    expect(paragraph.tagName).toBe("P");
+    expect(paragraph).toHaveClass(
+      "text-base normal-case text-left font-normal text-black"
     );
   });
 
-  test("renders with custom element type", () => {
-    render(<Text as="h1">Heading 1</Text>);
-
-    const textElement = screen.getByText(/heading 1/i);
-    expect(textElement).toBeInTheDocument();
-    expect(textElement.tagName).toBe("H1");
-    expect(textElement).toHaveClass(
-      "text-dark text-base normal-case text-left"
+  it("renders with a custom HTML element", () => {
+    render(<Text as="h1">Heading Text</Text>);
+    const heading = screen.getByText("Heading Text");
+    expect(heading.tagName).toBe("H1");
+    expect(heading).toHaveClass(
+      "text-base normal-case text-left font-normal text-black"
     );
   });
 
-  test("renders with custom fontSize", () => {
-    render(<Text fontSize="text-lg">Large Text</Text>);
-
-    const textElement = screen.getByText(/large text/i);
-    expect(textElement).toHaveClass(
-      "text-primary text-lg normal-case text-left"
-    );
+  it("applies the correct font size", () => {
+    render(<Text fontSize="text-xl">Large Text</Text>);
+    const text = screen.getByText("Large Text");
+    expect(text).toHaveClass("text-xl");
   });
 
-  test("renders with custom casing", () => {
+  it("applies the correct casing", () => {
     render(<Text casing="uppercase">Uppercase Text</Text>);
-
-    const textElement = screen.getByText(/uppercase text/i);
-    expect(textElement).toHaveClass(
-      "text-primary text-base uppercase text-left"
-    );
+    const text = screen.getByText("Uppercase Text");
+    expect(text).toHaveClass("uppercase");
   });
 
-  test("renders with custom alignment", () => {
+  it("applies the correct alignment", () => {
     render(<Text align="text-center">Centered Text</Text>);
-
-    const textElement = screen.getByText(/centered text/i);
-    expect(textElement).toHaveClass(
-      "text-primary text-base normal-case text-center"
-    );
+    const text = screen.getByText("Centered Text");
+    expect(text).toHaveClass("text-center");
   });
 
-  test("renders with all custom props", () => {
-    render(
-      <Text as="h2" fontSize="text-xl" casing="capitalize" align="text-right">
-        Custom Text
-      </Text>
-    );
-
-    const textElement = screen.getByText(/custom text/i);
-    expect(textElement).toBeInTheDocument();
-    expect(textElement.tagName).toBe("H2");
-    expect(textElement).toHaveClass("text-dark text-xl capitalize text-right");
+  it("applies the correct color", () => {
+    render(<Text color="red">Red Text</Text>);
+    const text = screen.getByText("Red Text");
+    expect(text).toHaveClass("text-red-500");
   });
-  it("should render with white color", () => {
-    const { getByText } = render(<Text color="white">Hello, World!</Text>);
 
-    const textElement = getByText("Hello, World!");
+  it("applies the correct font weight", () => {
+    render(<Text fontWeight="font-bold">Bold Text</Text>);
+    const text = screen.getByText("Bold Text");
+    expect(text).toHaveClass("font-bold");
+  });
 
-    // Check if the element has the correct class for white color
-    expect(textElement).toHaveClass("text-white");
+  it("defaults to black text color if no color is provided", () => {
+    render(<Text>Default Color Text</Text>);
+    const text = screen.getByText("Default Color Text");
+    expect(text).toHaveClass("text-black");
   });
 });

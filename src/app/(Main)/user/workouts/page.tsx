@@ -2,7 +2,7 @@
 import { useEffect, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { SessionContext } from "@/app/context/Session/SessionContext";
-import { Button, Modal, Toast } from "@/app/components";
+import { Button, Modal, Toast, Text } from "@/app/components";
 import { useToast } from "@/app/hooks/useToast";
 import { title } from "process";
 import Link from "next/link";
@@ -32,7 +32,9 @@ const Workouts = () => {
   return (
     <>
       <div className="flex space-y-2 flex-col">
-        <h1 className="text-xl font-bold">Workouts</h1>
+        <Text as="h1" fontSize="text-xl">
+          Workouts
+        </Text>
         <Link href="workouts/new">
           <button className="w-40 px-4 bg-violet-500 rounded py-2 text-white">
             Create Workout
