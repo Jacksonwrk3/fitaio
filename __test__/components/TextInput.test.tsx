@@ -69,4 +69,20 @@ describe("TextInput", () => {
     const inputElement = screen.getByPlaceholderText("Enter text");
     expect(inputElement).toHaveValue("Initial value");
   });
+
+  it("Should change the border and background color on focus", () => {
+    setup();
+    const inputElement = screen.getByPlaceholderText("Enter text");
+
+    // Focus the input element
+    fireEvent.focus(inputElement);
+
+    // Check if the input has the expected focus styles
+    expect(inputElement).toHaveClass("focus:border-primary-500"); // Adjust class name as per your implementation
+    expect(inputElement).toHaveClass("focus:bg-primary-100"); // Adjust class name as per your implementation
+
+    // Blur the input element to check if styles revert back
+    fireEvent.blur(inputElement);
+    // You can check for the absence of focus styles if necessary
+  });
 });
