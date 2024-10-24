@@ -84,6 +84,7 @@ interface TextProps {
  * @param {string} [fontWeight] - Tailwind CSS font weight class.
  *    - Options: "font-thin", "font-extralight", "font-light", "font-normal", "font-medium", "font-semibold", "font-bold", "font-extrabold", "font-black".
  *    - Defaults to "font-normal".
+ *    - See the [Font Weight Documentation](https://tailwindcss.com/docs/font-weight)
  */
 const Text: React.FC<TextProps> = ({
   children,
