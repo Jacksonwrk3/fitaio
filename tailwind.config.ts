@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        grayPrimary: "#e2e8f0",
+        grayPrimary: "text-red-500",
         primary: "#8b5cf6", // Violet
         accent: "#3C6E71", // Teal for buttons and links
         background: "#FFFFFF", // White for background
