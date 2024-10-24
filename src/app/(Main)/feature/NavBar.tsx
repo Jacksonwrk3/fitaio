@@ -158,9 +158,7 @@ const NavBar = () => {
                   onClick={toggleHamburger}
                 >
                   {/* Generate links with dynamic styles based on active route */}
-
-                  {item.name}
-
+                  <span>{item.name}</span>
                   <Image
                     src={isActive ? item.iconActive : item.iconPassive}
                     alt={item.alt}
@@ -178,7 +176,7 @@ const NavBar = () => {
               onClick={signout}
               className=" flex space-x-2  items-center justify-center w-full "
             >
-              <span>Sign Out</span>{" "}
+              <span className="text-red-500">Sign Out</span>
               <Image src="/logout.png" alt="Exit Icon" width={16} height={16} />
             </button>
           </div>
