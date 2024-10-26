@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { SessionContext } from "@/app/context/Session/SessionContext";
 import { Button, Modal, Toast, Text } from "@/app/components";
 import { useToast } from "@/app/hooks/useToast";
-import { title } from "process";
 import Link from "next/link";
 const Workouts = () => {
   const [displayModal, setDisplayModal] = useState(false);
