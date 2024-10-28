@@ -6,6 +6,7 @@ import { Button, Modal, Toast, Text } from "@/app/components";
 import { useToast } from "@/app/hooks/useToast";
 import Link from "next/link";
 const Workouts = () => {
+  //daily commit
   const [displayModal, setDisplayModal] = useState(false);
   const session = useContext(SessionContext);
   const router = useRouter();
