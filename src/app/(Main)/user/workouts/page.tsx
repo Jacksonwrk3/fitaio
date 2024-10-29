@@ -9,7 +9,7 @@ const Workouts = () => {
   const [displayModal, setDisplayModal] = useState(false);
   const session = useContext(SessionContext);
   const router = useRouter();
-
+  // daily commit
   const { openToast } = useToast();
   const closeModal = (e: React.MouseEvent) => {
     setDisplayModal(false);
