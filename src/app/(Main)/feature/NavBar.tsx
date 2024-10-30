@@ -5,7 +5,10 @@ import { createClient } from "@/app/util/supabase/client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Text } from "@/app/components";
+import { useRouter } from "next/navigation";
+import { Toast } from "@/app/components";
 import { NavigationItems, NavigationItem } from "./navItems.types";
+import { useToast } from "@/app/hooks";
 /**
  * NavBar component renders a navigation bar with links and a sign-out button.
  * @TODO write test
@@ -36,7 +39,9 @@ const NavBar = () => {
       return !prevState; // Switch the state between true and false
     });
   };
-
+  //create router
+  const router = useRouter();
+  const { openToast } = useToast();
   // Get the current pathname from Next.js router
   const pathname = usePathname();
 
@@ -88,11 +93,25 @@ const NavBar = () => {
    * @throws {Error} Throws an error if sign out fails.
    */
   const signout = async () => {
-    const { error } = await supabase.auth.signOut(); // Supabase sign-out request
-    if (error) {
-      const e = error as Error; // Typecast to Error type
-      console.log(e); // Log error if sign-out fails
-      throw new Error(e.message); // Throw the error to be handled elsewhere
+    try {
+      const { error } = await supabase.auth.signOut(); // Supabase sign-out request
+      if (error) {
+        const e = error as Error; // Typecast to Error type
+        console.error(e); // Log error if sign-out fails
+        throw new Error(e.message); // Throw the error to be handled elsewhere
+      } else {
+        router.replace("/");
+      }
+      throw new Error("Hello");
+    } catch (e) {
+      openToast(
+        <Toast
+          status="error"
+          title="Sign-out Error"
+          description="Error signing out. Please try again"
+        />,
+        5000
+      );
     }
   };
 
