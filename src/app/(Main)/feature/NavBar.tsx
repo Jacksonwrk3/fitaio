@@ -102,7 +102,6 @@ const NavBar = () => {
       } else {
         router.replace("/");
       }
-      throw new Error("Hello");
     } catch (e) {
       openToast(
         <Toast

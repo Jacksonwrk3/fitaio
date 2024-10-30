@@ -1,8 +1,8 @@
 "use client";
 import { on } from "events";
-import { Button, TextInput } from "../../components/index";
+import { Button, TextInput, Toast } from "../../components/index";
 import { googleSignUp } from "@/app/actions/auth/index";
-
+import { useToast } from "@/app/hooks";
 import Link from "next/link";
 import React, { useState } from "react";
 const SignUp = () => {
@@ -19,8 +19,10 @@ const SignUp = () => {
   const googleLogin = async () => {
     try {
       const res = await googleSignUp();
+      console.log(res);
     } catch (error) {
       let errorMsg = (error as Error).message;
+      console.error(errorMsg);
     }
   };
   return (
