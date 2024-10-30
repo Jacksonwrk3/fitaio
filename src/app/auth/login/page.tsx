@@ -62,7 +62,6 @@ const SignUp = () => {
               width="full"
               variant="outlined"
               onClick={(e) => {
-                console.log("clicked");
                 e!.preventDefault();
                 googleLogin();
               }}
