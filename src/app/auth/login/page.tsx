@@ -19,7 +19,6 @@ const SignUp = () => {
   const googleLogin = async () => {
     try {
       const res = await googleSignUp();
-      console.log(res);
     } catch (error) {
       let errorMsg = (error as Error).message;
       console.error(errorMsg);
