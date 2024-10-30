@@ -34,9 +34,7 @@ const SignUp = () => {
             onChange={(e) => {
               usernameOnChange(e);
             }}
-          >
-            Username
-          </TextInput>
+          />
           <TextInput
             type="password"
             id="username"
@@ -44,9 +42,7 @@ const SignUp = () => {
             onChange={(e) => {
               passwordOnChange(e);
             }}
-          >
-            Password
-          </TextInput>
+          />
           <div className="space-y-2 flex flex-col">
             <Button width="full">Sign Up</Button>
             <p className="text-center">
