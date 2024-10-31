@@ -10,6 +10,13 @@ const WorkoutsNew = () => {
     let searchedValue = e.target.value;
     setsearchedValue(searchedValue);
   };
+
+  const onClick = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_ORIGIN}/exercise`);
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
     <div>
       <div className="mb-4 mt-2 ">
@@ -60,6 +67,7 @@ const WorkoutsNew = () => {
           </div>
         </div>
       </div>
+      <Button onClick={onClick}>Test</Button>
     </div>
   );
 };
