@@ -13,6 +13,7 @@ const googleSignUp = async () => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
+      //Redirects to /auth/callback for cookie exchange and then redirects to /user/workouts
       redirectTo: `${process.env.NEXT_PUBLIC_ORIGIN}/auth/callback?next=/user/workouts`,
     },
   });
