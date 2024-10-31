@@ -7,8 +7,7 @@ import { useToast } from "@/app/hooks/useToast";
 import Link from "next/link";
 const Workouts = () => {
   const [displayModal, setDisplayModal] = useState(false);
-  const session = useContext(SessionContext);
-  const router = useRouter();
+
   const { openToast } = useToast();
   const closeModal = (e: React.MouseEvent) => {
     setDisplayModal(false);
@@ -18,15 +17,7 @@ const Workouts = () => {
 
     setDisplayModal(true);
   };
-  useEffect(() => {
-    //If there is an active session, do nothing
-    if (session) {
-    }
-    //If session is null, redirect to home page ("/")
-    else {
-      router.replace("/");
-    }
-  }, [session, router]);
+
   return (
     <div className="pt-8">
       <div className="flex justify-between ">
