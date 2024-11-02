@@ -11,6 +11,9 @@ const WorkoutsNew = () => {
     setsearchedValue(searchedValue);
   };
 
+  /**
+   * @TODO Make real fetching function
+   */
   const onClick = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_ORIGIN}/exercise`);
     const data = await res.json();
