@@ -159,7 +159,7 @@ const NavBar = () => {
               : "opacity-0 md:opacity-100  " // Hide menu on smaller screens if hamburger is closed
           }`}
         >
-          {navItems.map((item) => {
+          {navItems.map((item, index) => {
             const isActive = pathname.startsWith(item.path); // Check once and store the result
 
             return (
@@ -169,6 +169,7 @@ const NavBar = () => {
                   isActive ? activeLinkClasses : passiveLinkClasses
                 }`}
                 aria-current={isActive ? "page" : undefined}
+                key={index}
               >
                 <li
                   key={item.path}
