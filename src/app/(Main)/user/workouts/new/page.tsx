@@ -57,12 +57,12 @@ const WorkoutsNew = () => {
               />
             </div>
             <div>
-              <label className="text-sm font-bold" htmlFor="workout-name">
+              <label className="text-sm font-bold" htmlFor="exercise">
                 Add Exercises
               </label>
               <TextInput
                 placeholder="Enter a name"
-                id="workout-name"
+                id="exercise"
                 value={searchedValue}
                 onChange={searchOnChange}
               />
