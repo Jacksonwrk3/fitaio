@@ -1,7 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import TextSkeleton from "./TextSkeleton"; // Adjust the import path as necessary
-
+import { TextSkeleton } from "@/app/components";
 describe("TextSkeleton", () => {
   test("renders correctly with the loading skeleton", () => {
     const { container } = render(<TextSkeleton />);
