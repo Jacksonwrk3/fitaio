@@ -3,4 +3,5 @@ import TextInput from "./TextInput";
 import Modal from "./Modal";
 import Text from "./Text";
 import Toast from "./Toast";
-export { Button, TextInput, Modal, Toast, Text };
+import SearchInput from "./SearchInput";
+export { Button, TextInput, Modal, Toast, Text, SearchInput };
