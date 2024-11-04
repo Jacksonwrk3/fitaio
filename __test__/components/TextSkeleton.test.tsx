@@ -11,7 +11,7 @@ describe("TextSkeleton", () => {
     // Check if the class names are applied correctly
     expect(container.firstChild).toHaveClass("w-full");
     expect(container.firstChild).toHaveClass("animate-pulse");
-    expect(container.firstChild).toHaveClass("p-2");
-    expect(container.firstChild).toHaveClass("bg-loadinGray");
+    expect(container.firstChild).toHaveClass("p-3");
+    expect(container.firstChild).toHaveClass("bg-loadingGray");
   });
 });
