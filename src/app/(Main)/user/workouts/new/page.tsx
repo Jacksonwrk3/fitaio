@@ -1,15 +1,31 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Button, TextInput, Modal } from "@/app/components";
+import { createClient } from "@/app/util/supabase/client";
+import {
+  Button,
+  TextInput,
+  Modal,
+  TextSkeleton,
+  SearchInput,
+} from "@/app/components";
 import { useState } from "react";
 const WorkoutsNew = () => {
-  const [searchedValue, setsearchedValue] = useState("");
-  const [displayModal, setDisplayModal] = useState(false);
-  const searchOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let searchedValue = e.target.value;
-    setsearchedValue(searchedValue);
+  const [workoutName, setWorkoutName] = useState("");
+  // The input value of the exercise text input
+  const [exerciseValue, setExerciseValue] = useState("");
+
+  // Initialize supabase client
+  const supabase = createClient();
+
+  //Workout Text Input's onChange function
+  const workoutNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let workoutValue = e.target.value;
+    setWorkoutName(workoutValue);
   };
+
+  //Exercise Search Bar's onChange function
+  const searchOnChange = () => {};
 
   /**
    * @TODO Make real fetching function
@@ -52,25 +68,24 @@ const WorkoutsNew = () => {
               <TextInput
                 placeholder="Enter a name"
                 id="workout-name"
-                value={searchedValue}
-                onChange={searchOnChange}
+                value={workoutName}
+                onChange={workoutNameOnChange}
               />
             </div>
             <div>
               <label className="text-sm font-bold" htmlFor="exercise">
                 Add Exercises
               </label>
-              <TextInput
-                placeholder="Enter a name"
+              <SearchInput
                 id="exercise"
-                value={searchedValue}
                 onChange={searchOnChange}
+                items={["hello"]}
+                value={exerciseValue}
               />
             </div>
           </div>
         </div>
       </div>
-      <Button onClick={onClick}>Test</Button>
     </div>
   );
 };
