@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         containerGray: "#e2e8f0",
+        loadinGray: "#e4e4e7",
         primary: {
           100: "#ede9fe", // text-violet-100
           200: "#ddd6fe", // text-violet-200
