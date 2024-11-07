@@ -106,7 +106,9 @@ const SignUp = () => {
         />,
         2000
       );
-    } else {
+    }
+    //If no error, redirect
+    else {
       router.replace("/user/workouts");
     }
   };
