@@ -1,8 +1,10 @@
 "use client";
-import { Button, TextInput } from "../../components/index";
+import { Button, TextInput, Toast } from "../../components/index";
 import Link from "next/link";
 import { googleSignUp } from "@/app/actions/auth/index";
 import React, { useEffect, useState } from "react";
+import { capitalizeFirstLetter } from "@/app/util/stringUtils";
+import { createClient } from "@/app/util/supabase/client";
 import {
   hasLowercase,
   hasUppercase,
@@ -10,20 +12,27 @@ import {
   validLength,
   hasNumber,
 } from "@/app/util/validation";
+import { useToast } from "@/app/hooks";
+import { create } from "domain";
 /**
  * @TODO Error handle for google sign up
  */
 const SignUp = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [containsValidLength, setContainsValidLength] = useState(false);
   const [containsUppercase, setContainsUppercase] = useState(false);
   const [containsSymbol, setContainsSymbol] = useState(false);
   const [containsNumber, setContainsNumber] = useState(false);
   const [containsLowercase, setContainsLowercase] = useState(false);
   const [disableSignup, setDisableSignup] = useState(true);
-  const usernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+
+  const supabase = createClient();
+  const { openToast } = useToast();
+  const emailOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,11 +67,60 @@ const SignUp = () => {
     );
   };
 
+  const firstNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fName = e.target.value;
+    setFirstName(fName);
+  };
+
+  const lastNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const lName = e.target.value;
+    setLastName(lName);
+  };
+
+  const customRegister = async () => {
+    //Capitalizes first letter of firstName
+    const fName = capitalizeFirstLetter(firstName);
+    //Capitalizes first letter of lastName
+    const lName = capitalizeFirstLetter(lastName);
+    //Combines firstName and lastName to make full name
+    const fullName = `${fName} ${lName}`;
+    //Signs up via supabase client
+    const { error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          full_name: fullName,
+        },
+      },
+    });
+    //Opens toast if there's error
+    if (error) {
+      openToast(
+        <Toast
+          status="error"
+          title="Sign-up error"
+          description={error.message}
+        />,
+        5000
+      );
+    }
+  };
+
   const googleRegister = async () => {
     try {
       const res = await googleSignUp();
     } catch (error) {
+      // Displays error toast with description if google sign up fails
       let errorMsg = (error as Error).message;
+      openToast(
+        <Toast
+          status="error"
+          title="Sign-up error"
+          description={`${errorMsg}`}
+        />,
+        5000
+      );
     }
   };
   return (
@@ -71,12 +129,12 @@ const SignUp = () => {
         <h1 className=" font-bold text-4xl text-center">Create An Account</h1>
         <form className="border-2 border-grayPrimary rounded px-6 py-8 m-2  space-y-6">
           <div>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <TextInput
-              id="username"
-              value={username}
+              id="email"
+              value={email}
               onChange={(e) => {
-                usernameOnChange(e);
+                emailOnChange(e);
               }}
             />
           </div>
@@ -90,6 +148,28 @@ const SignUp = () => {
                 passwordOnChange(e);
               }}
             />
+          </div>
+          <div className="flex flex-col space-y-6 xs:flex-row xs:space-y-0 xs:justify-between">
+            <div>
+              <label htmlFor="first-name">First Name</label>
+              <TextInput
+                id="first-name"
+                value={firstName}
+                onChange={(e) => {
+                  firstNameOnChange(e);
+                }}
+              />
+            </div>
+            <div>
+              <label htmlFor="last-name">Last Name</label>
+              <TextInput
+                id="last-name"
+                value={lastName}
+                onChange={(e) => {
+                  lastNameOnChange(e);
+                }}
+              />
+            </div>
           </div>
           <div className="text-sm space-y-1">
             <p
@@ -121,7 +201,8 @@ const SignUp = () => {
               width="full"
               disabled={disableSignup}
               onClick={(e) => {
-                e?.preventDefault();
+                e!.preventDefault();
+                customRegister();
               }}
             >
               Sign Up
@@ -144,7 +225,6 @@ const SignUp = () => {
               width="full"
               variant="outlined"
               onClick={(e) => {
-                console.log("clicked");
                 e!.preventDefault();
                 googleRegister();
               }}
