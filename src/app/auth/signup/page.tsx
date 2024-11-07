@@ -95,14 +95,14 @@ const SignUp = () => {
       },
     });
     //Opens toast if there's error
-    if (error) {
+    if (true) {
       openToast(
         <Toast
           status="error"
           title="Sign-up error"
-          description={error.message}
+          description={error!.message}
         />,
-        5000
+        2000
       );
     }
   };
