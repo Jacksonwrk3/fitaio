@@ -4,7 +4,7 @@ import Link from "next/link";
 import { googleSignUp } from "@/app/actions/auth/index";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { capitalizeFirstLetter } from "@/app/util/stringUtils";
+import { capitalizeFirstLetter } from "@/app/util/string";
 import { createClient } from "@/app/util/supabase/client";
 import {
   hasLowercase,
@@ -12,9 +12,8 @@ import {
   hasSymbols,
   validLength,
   hasNumber,
-} from "@/app/util/validation";
+} from "@/app/util/string";
 import { useToast } from "@/app/hooks";
-import { create } from "domain";
 /**
  * @TODO Error handle for google sign up
  */
@@ -30,6 +29,17 @@ const SignUp = () => {
   const [containsLowercase, setContainsLowercase] = useState(false);
   const [disableSignup, setDisableSignup] = useState(true);
 
+  useEffect(() => {}, [
+    email,
+    password,
+    firstName,
+    lastName,
+    containsValidLength,
+    containsUppercase,
+    containsSymbol,
+    containsNumber,
+    containsLowercase,
+  ]);
   const supabase = createClient();
   const router = useRouter();
   const { openToast } = useToast();
@@ -44,11 +54,11 @@ const SignUp = () => {
     setPassword(newPassword);
 
     // Evaluate the password's validity directly
-    const validLowercase = hasLowercase(newPassword).isValid;
-    const validUppercase = hasUppercase(newPassword).isValid;
-    const validSymbol = hasSymbols(newPassword).isValid;
-    const isValidLength = validLength(newPassword, 9).isValid;
-    const validNumber = hasNumber(newPassword).isValid;
+    const validLowercase = hasLowercase(newPassword);
+    const validUppercase = hasUppercase(newPassword);
+    const validSymbol = hasSymbols(newPassword);
+    const isValidLength = validLength(newPassword, 9);
+    const validNumber = hasNumber(newPassword);
 
     // Update state based on the latest password validity checks
     setContainsLowercase(validLowercase);
@@ -56,17 +66,6 @@ const SignUp = () => {
     setContainsSymbol(validSymbol);
     setContainsValidLength(isValidLength);
     setContainsNumber(validNumber);
-
-    // Determine if the signup should be disabled
-    setDisableSignup!(
-      !(
-        validLowercase &&
-        validNumber &&
-        validSymbol &&
-        validUppercase &&
-        validLength
-      )
-    );
   };
 
   const firstNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {

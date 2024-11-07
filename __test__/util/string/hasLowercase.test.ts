@@ -1,4 +1,4 @@
-import { hasLowercase } from "@/app/util/validation";
+import { hasLowercase } from "@/app/util/string";
 describe("hasLowercase", () => {
   it("should return true if the string contains lowercase letters", () => {
     expect(hasLowercase("hello")).toBe(true);

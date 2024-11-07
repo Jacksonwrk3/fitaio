@@ -1,5 +1,5 @@
 // hasUppercase.test.ts
-import { hasUppercase } from "@/app/util/validation";
+import { hasUppercase } from "@/app/util/string";
 describe("hasUppercase", () => {
   it("should return true if the string contains at least one uppercase letter", () => {
     expect(hasUppercase("Hello")).toBe(true);

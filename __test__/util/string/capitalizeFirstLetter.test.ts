@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from "@/app/util/stringUtils";
+import { capitalizeFirstLetter } from "@/app/util/string";
 describe("capitalizeFirstLetter", () => {
   it("capitalizes the first letter of a lowercase word", () => {
     expect(capitalizeFirstLetter("hello")).toBe("Hello");

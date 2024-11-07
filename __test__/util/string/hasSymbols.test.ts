@@ -1,4 +1,4 @@
-import { hasSymbols } from "@/app/util/validation";
+import { hasSymbols } from "@/app/util/string";
 describe("hasSymbols", () => {
   it("should return true if the string contains symbols", () => {
     expect(hasSymbols("hello!")).toBe(true);

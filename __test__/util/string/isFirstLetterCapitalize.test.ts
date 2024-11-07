@@ -1,5 +1,4 @@
-// isFirstLetterCapitalized.test.ts
-import { isFirstLetterCapitalized } from "@/app/util/stringUtils";
+import { isFirstLetterCapitalized } from "@/app/util/string";
 describe("isFirstLetterCapitalized", () => {
   it("should return true for a string starting with an uppercase letter", () => {
     expect(isFirstLetterCapitalized("Hello")).toBe(true);

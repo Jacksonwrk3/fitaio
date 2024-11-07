@@ -1,5 +1,5 @@
 // validLength.test.ts
-import { validLength } from "@/app/util/validation";
+import { validLength } from "@/app/util/string";
 describe("validLength", () => {
   it("should return true if the password length is equal to the specified length", () => {
     expect(validLength("password123", 11)).toBe(true);

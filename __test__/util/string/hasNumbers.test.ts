@@ -1,4 +1,4 @@
-import { hasNumber } from "@/app/util/validation";
+import { hasNumber } from "@/app/util/string";
 describe("hasNumber", () => {
   it("should return true if the string contains numbers", () => {
     expect(hasNumber("hello123")).toBe(true);

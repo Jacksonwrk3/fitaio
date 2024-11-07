@@ -1,14 +1,16 @@
 import hasSymbols from "./hasSymbols";
 import hasUppercase from "./hasUppercase";
 import validLength from "./validLength";
-import validPw from "./validPw";
 import hasLowercase from "./hasLowercase";
 import hasNumber from "./hasNumber";
+import capitalizeFirstLetter from "./capitalizeFirstLetter";
+import isFirstLetterCapitalized from "./isFirstLetterCapitalized";
 export {
   hasSymbols,
   hasUppercase,
   validLength,
-  validPw,
   hasLowercase,
   hasNumber,
+  isFirstLetterCapitalized,
+  capitalizeFirstLetter,
 };
