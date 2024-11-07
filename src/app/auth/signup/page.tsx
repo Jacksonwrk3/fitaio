@@ -3,6 +3,7 @@ import { Button, TextInput, Toast } from "../../components/index";
 import Link from "next/link";
 import { googleSignUp } from "@/app/actions/auth/index";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { capitalizeFirstLetter } from "@/app/util/stringUtils";
 import { createClient } from "@/app/util/supabase/client";
 import {
@@ -30,6 +31,7 @@ const SignUp = () => {
   const [disableSignup, setDisableSignup] = useState(true);
 
   const supabase = createClient();
+  const router = useRouter();
   const { openToast } = useToast();
   const emailOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -95,7 +97,7 @@ const SignUp = () => {
       },
     });
     //Opens toast if there's error
-    if (true) {
+    if (error) {
       openToast(
         <Toast
           status="error"
@@ -104,6 +106,8 @@ const SignUp = () => {
         />,
         2000
       );
+    } else {
+      router.replace("/user/workouts");
     }
   };
 
