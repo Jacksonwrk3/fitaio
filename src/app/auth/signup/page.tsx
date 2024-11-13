@@ -153,6 +153,31 @@ const SignUp = () => {
                 passwordOnChange(e);
               }}
             />
+            <div className="text-sm space-y-1 mt-1">
+              <p
+                className={
+                  containsValidLength ? "hidden" : "block text-red-500"
+                }
+              >
+                Password must be over 8 characters
+              </p>
+              <p
+                className={containsUppercase ? "hidden" : "block text-red-500"}
+              >
+                Password must contain 1 uppcercase character (A-Z)
+              </p>
+              <p
+                className={containsLowercase ? "hidden" : "block text-red-500"}
+              >
+                Password must contain 1 lowercase character (a-z)
+              </p>
+              <p className={containsSymbol ? "hidden" : "block text-red-500"}>
+                Password must contain 1 symbol (!@#$%^&*)
+              </p>
+              <p className={containsNumber ? "hidden" : "block text-red-500"}>
+                Password must contain 1 number (0-9)
+              </p>
+            </div>
           </div>
           <div className="flex flex-col space-y-6 xs:flex-row xs:space-y-0 xs:justify-between">
             <div>
@@ -176,31 +201,7 @@ const SignUp = () => {
               />
             </div>
           </div>
-          <div className="text-sm space-y-1">
-            <p
-              className={
-                containsValidLength ? "text-green-500" : "text-red-500"
-              }
-            >
-              Password must be over 8 characters
-            </p>
-            <p
-              className={containsUppercase ? "text-green-500" : "text-red-500"}
-            >
-              Password must contain 1 uppcercase character (A-Z)
-            </p>
-            <p
-              className={containsLowercase ? "text-green-500" : "text-red-500"}
-            >
-              Password must contain 1 lowercase character (a-z)
-            </p>
-            <p className={containsSymbol ? "text-green-500" : "text-red-500"}>
-              Password must contain 1 symbol (!@#$%^&*)
-            </p>
-            <p className={containsNumber ? "text-green-500" : "text-red-500"}>
-              Password must contain 1 number (0-9)
-            </p>
-          </div>
+
           <div className="space-y-2 flex flex-col">
             <Button
               width="full"
