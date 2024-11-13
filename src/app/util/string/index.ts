@@ -5,6 +5,7 @@ import hasLowercase from "./hasLowercase";
 import hasNumber from "./hasNumber";
 import capitalizeFirstLetter from "./capitalizeFirstLetter";
 import isFirstLetterCapitalized from "./isFirstLetterCapitalized";
+import isEmail from "./isEmail";
 export {
   hasSymbols,
   hasUppercase,
@@ -13,4 +14,5 @@ export {
   hasNumber,
   isFirstLetterCapitalized,
   capitalizeFirstLetter,
+  isEmail,
 };
