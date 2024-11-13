@@ -12,11 +12,10 @@ import {
   hasSymbols,
   validLength,
   hasNumber,
+  isEmail,
 } from "@/app/util/string";
 import { useToast } from "@/app/hooks";
-/**
- * @TODO Error handle for google sign up
- */
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
