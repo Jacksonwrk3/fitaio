@@ -1,88 +1,124 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import TextInput from "@/app/components/TextInput"; // Adjust the import path as needed
-import React from "react";
+import { TextInput } from "@/app/components";
+import "@testing-library/jest-dom"; // for the extended matchers
 
-describe("TextInput", () => {
+describe("TextInput Component", () => {
   const mockOnChange = jest.fn();
-  const setup = (props = {}) => {
-    const defaultProps = {
-      id: "test-input",
-      placeholder: "Enter text",
-      onChange: mockOnChange,
-      value: "",
-      ...props,
-    };
+  const mockOnBlur = jest.fn();
 
-    return render(<TextInput {...defaultProps} />);
-  };
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-  it("Should render the input correctly", () => {
-    setup();
+  it("should render with the provided value and placeholder", () => {
+    render(
+      <TextInput
+        id="test-input"
+        value="Test Value"
+        onChange={mockOnChange}
+        onBlur={mockOnBlur}
+        placeholder="Enter text"
+      />
+    );
+
     const inputElement = screen.getByPlaceholderText("Enter text");
-
     expect(inputElement).toBeInTheDocument();
+    expect(inputElement).toHaveValue("Test Value");
   });
 
-  it("Should render as a password input by default for type=password", () => {
-    setup({ type: "password" });
-    const inputElement = screen.getByPlaceholderText("Enter text");
-    expect(inputElement).toHaveAttribute("type", "password");
-  });
+  it("Should call onChange when input value changes", () => {
+    render(
+      <TextInput
+        id="test-input"
+        placeholder="Enter text"
+        onChange={mockOnChange}
+        value=""
+      />
+    );
 
-  it("Should toggle visibility of password input when clicking 'Show'/'Hide'", () => {
-    setup({ type: "password" });
+    const input = screen.getByPlaceholderText("Enter text");
 
-    const toggleElement = screen.getByText("Show");
-    const inputElement = screen.getByPlaceholderText("Enter text");
+    // Simulate typing into the input field
+    fireEvent.change(input, { target: { value: "New Value" } });
 
-    // Verify initially hidden (password)
-    expect(inputElement).toHaveAttribute("type", "password");
-
-    // Click to show password
-    fireEvent.click(toggleElement);
-    expect(screen.getByText("Hide")).toBeInTheDocument();
-    expect(inputElement).toHaveAttribute("type", "text");
-
-    // Click to hide password
-    fireEvent.click(screen.getByText("Hide"));
-    expect(screen.getByText("Show")).toBeInTheDocument();
-    expect(inputElement).toHaveAttribute("type", "password");
-  });
-
-  it("Should render as a text input by default", () => {
-    setup();
-    const inputElement = screen.getByPlaceholderText("Enter text");
-    expect(inputElement).toHaveAttribute("type", "text");
-  });
-
-  it("Should call the onChange handler when input value changes", () => {
-    setup();
-
-    const inputElement = screen.getByPlaceholderText("Enter text");
-    fireEvent.change(inputElement, { target: { value: "new value" } });
-
+    // Assert that onChange was called
     expect(mockOnChange).toHaveBeenCalledTimes(1);
   });
 
-  it("Should display the correct value in the input", () => {
-    setup({ value: "Initial value" });
+  it("should call onBlur when input loses focus", () => {
+    render(
+      <TextInput
+        id="test-input"
+        value="Test Value"
+        onChange={mockOnChange}
+        onBlur={mockOnBlur}
+        placeholder="Enter text"
+      />
+    );
+
     const inputElement = screen.getByPlaceholderText("Enter text");
-    expect(inputElement).toHaveValue("Initial value");
+    fireEvent.blur(inputElement);
+
+    expect(mockOnBlur).toHaveBeenCalledTimes(1);
   });
 
-  it("Should change the border and background color on focus", () => {
-    setup();
-    const inputElement = screen.getByPlaceholderText("Enter text");
+  it('should toggle visibility when the "Show/Hide" button is clicked for password input', () => {
+    render(
+      <TextInput
+        id="test-input"
+        value="Password"
+        onChange={mockOnChange}
+        onBlur={mockOnBlur}
+        placeholder="Enter password"
+        type="password"
+      />
+    );
 
-    // Focus the input element
-    fireEvent.focus(inputElement);
+    const showHideButton = screen.getByText("Show");
+    expect(showHideButton).toBeInTheDocument();
 
-    // Check if the input has the expected focus styles
-    expect(inputElement).toHaveClass("focus:border-primary-500"); // Adjust class name as per your implementation
-    expect(inputElement).toHaveClass("focus:bg-primary-100"); // Adjust class name as per your implementation
+    // Initially it should be password type
+    const inputElement = screen.getByPlaceholderText("Enter password");
+    expect(inputElement).toHaveAttribute("type", "password");
 
-    // Blur the input element to check if styles revert back
-    fireEvent.blur(inputElement);
-    // You can check for the absence of focus styles if necessary
+    // Click to toggle visibility
+    fireEvent.click(showHideButton);
+
+    // After click, the input type should be text
+    expect(inputElement).toHaveAttribute("type", "text");
+    expect(screen.getByText("Hide")).toBeInTheDocument();
+  });
+
+  it("should match snapshot for text input", () => {
+    const { asFragment } = render(
+      <TextInput
+        id="test-input"
+        value="Text"
+        onChange={mockOnChange}
+        onBlur={mockOnBlur}
+        placeholder="Enter text"
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("should render a password field and show/hide the password visibility toggle", () => {
+    render(
+      <TextInput
+        id="password-input"
+        value="Password123"
+        onChange={mockOnChange}
+        onBlur={mockOnBlur}
+        placeholder="Enter password"
+        type="password"
+      />
+    );
+
+    // The input should initially be of type password
+    const inputElement = screen.getByPlaceholderText("Enter password");
+    expect(inputElement).toHaveAttribute("type", "password");
+
+    // "Show" text should be visible initially
+    expect(screen.getByText("Show")).toBeInTheDocument();
   });
 });

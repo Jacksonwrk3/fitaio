@@ -1,6 +1,6 @@
-"use client";
 import { useState, useEffect } from "react";
 import TextInputProps from "./TextInput.types";
+
 /**
  * @description A TextInput component that renders a text input field, either of type "text" or "password".
  * It includes the ability to toggle the visibility of the password when the type is set to "password".
@@ -42,7 +42,7 @@ const TextInput: React.FC<TextInputProps> = ({
         placeholder={placeholder}
         onChange={(e) => onChange && onChange(e)} // Only call onChange if it's provided
         onBlur={(e) => onBlur && onBlur(e)} // Only call onBlur if it's provided
-        value={value}
+        value={value} // Controlled input value
       />
       {type === "password" && (
         <div
