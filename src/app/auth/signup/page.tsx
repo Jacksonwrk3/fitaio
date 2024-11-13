@@ -23,27 +23,53 @@ const SignUp = () => {
   const [password, setPassword] = useState(""); // Password state
   const [firstName, setFirstName] = useState(""); // First name state
   const [lastName, setLastName] = useState(""); // Last name state
-  const [containsValidLength, setContainsValidLength] = useState(true); // Password length validation state
-  const [containsUppercase, setContainsUppercase] = useState(true); // Password uppercase validation state
-  const [containsSymbol, setContainsSymbol] = useState(true); // Password symbol validation state
-  const [containsNumber, setContainsNumber] = useState(true); // Password number validation state
-  const [containsLowercase, setContainsLowercase] = useState(true); // Password lowercase validation state
-  const [validEmail, setValidEmail] = useState(true); // Email validation state
-  const [validFirstName, setValidFirstName] = useState(true); // First name validation state
-  const [validLastName, setValidLastName] = useState(true); // Last name validation state
-  const [disableSignup, setDisableSignup] = useState(true); // State to disable the sign-up button if conditions aren't met
+  const [containsValidLength, setContainsValidLength] = useState<
+    null | boolean
+  >(null); // Password length validation state
+  const [containsUppercase, setContainsUppercase] = useState<null | boolean>(
+    null
+  ); // Password uppercase validation state
+  const [containsSymbol, setContainsSymbol] = useState<null | boolean>(null); // Password symbol validation state
+  const [containsNumber, setContainsNumber] = useState<null | boolean>(null); // Password number validation state
+  const [containsLowercase, setContainsLowercase] = useState<null | boolean>(
+    null
+  ); // Password lowercase validation state
+  const [validEmail, setValidEmail] = useState<null | boolean>(null); // Email validation state
+  const [validFirstName, setValidFirstName] = useState<null | boolean>(null); // First name validation state
+  const [validLastName, setValidLastName] = useState<null | boolean>(null); // Last name validation state
+  const [disableSignup, setDisableSignup] = useState<null | boolean>(null); // State to disable the sign-up button if conditions aren't met
 
   // useEffect hook to track changes in the form fields (no-op in this case)
-  useEffect(() => {}, [
-    email,
-    password,
-    firstName,
-    lastName,
+  useEffect(() => {
+    // Check if all validation variables are true
+    const allValid = [
+      containsValidLength,
+      containsUppercase,
+      containsSymbol,
+      containsNumber,
+      containsLowercase,
+      validEmail,
+      validFirstName,
+      validLastName,
+    ].every(Boolean); // Check if every item is true
+
+    if (allValid) {
+      setDisableSignup(false);
+    } else {
+      setDisableSignup(true);
+    }
+
+    // Logic to execute if any validation fails
+    // You can enable/disable the signup button or trigger other actions here
+  }, [
     containsValidLength,
     containsUppercase,
     containsSymbol,
     containsNumber,
     containsLowercase,
+    validEmail,
+    validFirstName,
+    validLastName,
   ]);
 
   const supabase = createClient(); // Creating a Supabase client instance
@@ -62,12 +88,32 @@ const SignUp = () => {
 
   // Updates the email state when the email input changes
   const emailOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value); // Updates the email value
-  };
+    const emailInput = e.target.value; // Get the current input value
 
+    // Set the email input state
+    setEmail(emailInput);
+
+    // Directly validate the current input value without waiting for state update
+    const emailIsValid = isEmail(emailInput);
+
+    // Set the validation state based on the input value
+    setValidEmail(emailIsValid);
+  };
   // Updates the password state when the password input changes
   const passwordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
+    const validLowercase = hasLowercase(newPassword); // Check for lowercase letters
+    const validUppercase = hasUppercase(newPassword); // Check for uppercase letters
+    const validSymbol = hasSymbols(newPassword); // Check for special symbols
+    const isValidLength = validLength(newPassword, 9); // Check if password length is >= 9
+    const validNumber = hasNumber(newPassword); // Check for numbers in the password
+
+    // Update the state based on validation results
+    setContainsLowercase(validLowercase);
+    setContainsUppercase(validUppercase);
+    setContainsSymbol(validSymbol);
+    setContainsValidLength(isValidLength);
+    setContainsNumber(validNumber);
     setPassword(newPassword); // Updates the password value
   };
 
@@ -90,15 +136,29 @@ const SignUp = () => {
   // Updates the first name state when the input value changes
   const firstNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fName = e.target.value;
+    setValidFirstName(validName(fName));
     setFirstName(fName); // Update first name
   };
 
   // Updates the last name state when the input value changes
   const lastNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const lName = e.target.value;
+    setValidLastName(validName(lName));
     setLastName(lName); // Update last name
   };
-
+  //Function determines if we should display error message or not
+  const displayError = (isValidValue: null | boolean) => {
+    let display;
+    //If isValidValue is either null or true then display is false
+    if (isValidValue === null || isValidValue === true) {
+      display = false;
+    } else if (isValidValue === false) {
+      display = true;
+    }
+    //if isValidValue is false, then display is true
+    console.log("display value: ", display);
+    return display;
+  };
   // Validates the first and last names (checks for symbols, numbers, and empty input)
   const validName = (name: string) => {
     let isValid = !hasSymbols(name) && !hasNumber(name) && name.length !== 0;
@@ -173,7 +233,7 @@ const SignUp = () => {
                 onBlur={emailUnfocus}
               />
             </div>
-            {!validEmail && (
+            {displayError(validEmail) && (
               <p className="text-red-500 text-sm">Please enter a valid email</p>
             )}
           </div>
@@ -191,29 +251,31 @@ const SignUp = () => {
               />
             </div>
             <div className="text-sm space-y-1 ">
-              <p
-                className={
-                  containsValidLength ? "hidden" : "block text-red-500"
-                }
-              >
-                Password must be over 8 characters
-              </p>
-              <p
-                className={containsUppercase ? "hidden" : "block text-red-500"}
-              >
-                Password must contain 1 uppercase character (A-Z)
-              </p>
-              <p
-                className={containsLowercase ? "hidden" : "block text-red-500"}
-              >
-                Password must contain 1 lowercase character (a-z)
-              </p>
-              <p className={containsSymbol ? "hidden" : "block text-red-500"}>
-                Password must contain 1 symbol (!@#$%^&*)
-              </p>
-              <p className={containsNumber ? "hidden" : "block text-red-500"}>
-                Password must contain 1 number (0-9)
-              </p>
+              {displayError(containsValidLength) && (
+                <p className="text-red-500">
+                  Password must be over 8 characters
+                </p>
+              )}
+              {displayError(containsUppercase) && (
+                <p className="text-red-500">
+                  Password must contain 1 uppercase character (A-Z)
+                </p>
+              )}
+              {displayError(containsLowercase) && (
+                <p className="text-red-500">
+                  Password must contain 1 lowercase character (a-z)
+                </p>
+              )}
+              {displayError(containsSymbol) && (
+                <p className="text-red-500">
+                  Password must contain 1 symbol (!@#$%^&*)
+                </p>
+              )}
+              {displayError(containsNumber) && (
+                <p className={"text-red-500"}>
+                  Password must contain 1 number (0-9)
+                </p>
+              )}
             </div>
           </div>
 
@@ -232,7 +294,7 @@ const SignUp = () => {
                   }}
                 />
               </div>
-              {!validFirstName && (
+              {displayError(validFirstName) && (
                 <p className="text-red-500 text-sm">Enter a valid first name</p>
               )}
             </div>
@@ -250,7 +312,7 @@ const SignUp = () => {
                   }}
                 />
               </div>
-              {!validLastName && (
+              {displayError(validLastName) && (
                 <p className="text-red-500 text-sm">Enter a valid last name</p>
               )}
             </div>

@@ -45,7 +45,7 @@ const SignUp = () => {
             }}
           />
           <div className="space-y-2 flex flex-col">
-            <Button width="full">Sign Up</Button>
+            <Button width="full">Log in </Button>
             <p className="text-center">
               Dont have an account?{" "}
               <span className="underline">
