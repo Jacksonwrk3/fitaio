@@ -5,14 +5,14 @@ import React from "react";
 /**
  * @description Type for the Button component's props
  * @property {React.ReactNode} children - The content inside the button
- * @property {(e?: React.MouseEvent) => void} onClick - The function to be called when the button is clicked
+ * @property {(e: React.MouseEvent) => void} onClick - The function to be called when the button is clicked
  * @property {string} variant - The variant of the button
  * @property {string} width - The width of the button
  * @property {string} icon - The icon to be displayed
  */
 type ButtonProps = {
   children: React.ReactNode;
-  onClick?: (e?: React.MouseEvent) => void;
+  onClick: (e: React.MouseEvent) => void;
   variant?: "primary" | "outlined";
   width?: "full" | "auto";
   icon?: "string";
@@ -22,7 +22,7 @@ type ButtonProps = {
 /**
  * @component Button
  * @param {React.ReactNode} children
- * @param {(e?: React.MouseEvent) => void} onClick
+ * @param {(e: React.MouseEvent) => void} onClick
  * @param {"primary" | "outlined"} variant
  * @param {"full" | "auto"} width - Width of button
  *  - "full": Takes width of parent
