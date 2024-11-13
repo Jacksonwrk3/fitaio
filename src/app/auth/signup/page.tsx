@@ -262,7 +262,7 @@ const SignUp = () => {
               width="full"
               disabled={disableSignup} // Disable the button if sign-up is not valid
               onClick={(e) => {
-                e.preventDefault();
+                e!.preventDefault();
                 customRegister(); // Call custom sign-up function
               }}
             >
