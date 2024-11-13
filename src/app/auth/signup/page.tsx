@@ -37,7 +37,7 @@ const SignUp = () => {
   const [validEmail, setValidEmail] = useState<null | boolean>(null); // Email validation state
   const [validFirstName, setValidFirstName] = useState<null | boolean>(null); // First name validation state
   const [validLastName, setValidLastName] = useState<null | boolean>(null); // Last name validation state
-  const [disableSignup, setDisableSignup] = useState<null | boolean>(null); // State to disable the sign-up button if conditions aren't met
+  const [disableSignup, setDisableSignup] = useState<boolean>(false); // State to disable the sign-up button if conditions aren't met
 
   // useEffect hook to track changes in the form fields (no-op in this case)
   useEffect(() => {
