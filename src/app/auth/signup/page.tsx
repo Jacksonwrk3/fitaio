@@ -21,11 +21,12 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [containsValidLength, setContainsValidLength] = useState(false);
-  const [containsUppercase, setContainsUppercase] = useState(false);
-  const [containsSymbol, setContainsSymbol] = useState(false);
-  const [containsNumber, setContainsNumber] = useState(false);
-  const [containsLowercase, setContainsLowercase] = useState(false);
+  const [containsValidLength, setContainsValidLength] = useState(true);
+  const [containsUppercase, setContainsUppercase] = useState(true);
+  const [containsSymbol, setContainsSymbol] = useState(true);
+  const [containsNumber, setContainsNumber] = useState(true);
+  const [containsLowercase, setContainsLowercase] = useState(true);
+  const [validEmail, setValidEmail] = useState(true);
   const [disableSignup, setDisableSignup] = useState(true);
 
   useEffect(() => {}, [
@@ -42,6 +43,13 @@ const SignUp = () => {
   const supabase = createClient();
   const router = useRouter();
   const { openToast } = useToast();
+
+  const emailUnfocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    let res = isEmail(email);
+    if (!res) {
+      setValidEmail(false);
+    }
+  };
   const emailOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -51,13 +59,14 @@ const SignUp = () => {
 
     // Update the password state
     setPassword(newPassword);
-
+  };
+  const passwordOnBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Evaluate the password's validity directly
-    const validLowercase = hasLowercase(newPassword);
-    const validUppercase = hasUppercase(newPassword);
-    const validSymbol = hasSymbols(newPassword);
-    const isValidLength = validLength(newPassword, 9);
-    const validNumber = hasNumber(newPassword);
+    const validLowercase = hasLowercase(password);
+    const validUppercase = hasUppercase(password);
+    const validSymbol = hasSymbols(password);
+    const isValidLength = validLength(password, 9);
+    const validNumber = hasNumber(password);
 
     // Update state based on the latest password validity checks
     setContainsLowercase(validLowercase);
@@ -132,27 +141,36 @@ const SignUp = () => {
       <div className="max-w-lg w-full">
         <h1 className=" font-bold text-4xl text-center">Create An Account</h1>
         <form className="border-2 border-grayPrimary rounded px-6 py-8 m-2  space-y-6">
-          <div>
-            <label htmlFor="email">Email</label>
-            <TextInput
-              id="email"
-              value={email}
-              onChange={(e) => {
-                emailOnChange(e);
-              }}
-            />
+          <div className="space-y-1">
+            <div>
+              <label htmlFor="email">Email</label>
+              <TextInput
+                id="email"
+                value={email}
+                onChange={(e) => {
+                  emailOnChange(e);
+                }}
+                onBlur={emailUnfocus}
+              />
+            </div>
+            {!validEmail ? (
+              <p className="text-red-500 text-sm ">
+                Please enter a valid email
+              </p>
+            ) : null}
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <TextInput
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => {
-                passwordOnChange(e);
-              }}
-            />
-            <div className="text-sm space-y-1 mt-1">
+          <div className="space-y-1">
+            <div>
+              <label htmlFor="password">Password</label>
+              <TextInput
+                type="password"
+                id="password"
+                value={password}
+                onBlur={passwordOnBlur}
+                onChange={passwordOnChange}
+              />
+            </div>
+            <div className="text-sm space-y-1 ">
               <p
                 className={
                   containsValidLength ? "hidden" : "block text-red-500"
