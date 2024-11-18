@@ -28,7 +28,6 @@ const SignUp = () => {
     });
 
     if (error) {
-      console.log("got error");
       openToast(
         <Toast
           status="error"

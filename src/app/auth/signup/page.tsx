@@ -156,7 +156,6 @@ const SignUp = () => {
       display = true;
     }
     //if isValidValue is false, then display is true
-    console.log("display value: ", display);
     return display;
   };
   // Validates the first and last names (checks for symbols, numbers, and empty input)

@@ -33,12 +33,12 @@ const TextInput: React.FC<TextInputProps> = ({
   }, [type]); // Only re-run when type changes
 
   return (
-    <div className="relative flex items-center border border-grayPrimary rounded">
+    <div className="relative flex items-center ">
       <input
         type={isVisible ? "text" : "password"} // Toggle between text and password visibility
         id={id}
         name={id}
-        className="py-2 pl-4 w-full focus:outline-none focus:ring-0 box-border focus:border focus:border-primary-500 focus:bg-primary-100"
+        className="py-2 pl-4 w-full focus:outline-none focus:ring-0 box-border border-grayPrimary rounded border focus:border-primary-500 focus:bg-primary-100"
         placeholder={placeholder}
         onChange={(e) => onChange && onChange(e)} // Only call onChange if it's provided
         onBlur={(e) => onBlur && onBlur(e)} // Only call onBlur if it's provided
