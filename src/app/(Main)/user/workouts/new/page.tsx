@@ -12,8 +12,6 @@ import {
 import { useState } from "react";
 const WorkoutsNew = () => {
   const [workoutName, setWorkoutName] = useState("");
-  // The input value of the exercise text input
-  const [exerciseValue, setExerciseValue] = useState("");
 
   // Initialize supabase client
   const supabase = createClient();
@@ -24,9 +22,6 @@ const WorkoutsNew = () => {
     setWorkoutName(workoutValue);
   };
 
-  //Exercise Search Bar's onChange function
-  const searchOnChange = () => {};
-
   /**
    * @TODO Make real fetching function
    */
@@ -36,6 +31,7 @@ const WorkoutsNew = () => {
     console.log(data);
   };
 
+  const handleSearchChange = async (searchValue: string) => {};
   return (
     <div>
       <div className="mb-4 mt-2 ">
@@ -76,13 +72,16 @@ const WorkoutsNew = () => {
               <label className="text-sm font-bold" htmlFor="exercise">
                 Add Exercises
               </label>
-              <SearchInput
-                id="exercise"
-                onChange={searchOnChange}
-                items={["hello"]}
-                value={exerciseValue}
-              />
+              <SearchInput onChange={() => {}} />
             </div>
+            <Button
+              onClick={() => {
+                console.log("place holder function");
+              }}
+              width="full"
+            >
+              Create
+            </Button>
           </div>
         </div>
       </div>
