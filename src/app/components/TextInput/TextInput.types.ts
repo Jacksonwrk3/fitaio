@@ -6,7 +6,7 @@
  * @property {"text" | "password"} [type="text"] - The variant of the input, either text or password.
  */
 type BaseInputProps = {
-  id: string;
+  id?: string;
   placeholder?: string;
   value: string;
   type?: "text" | "password";
