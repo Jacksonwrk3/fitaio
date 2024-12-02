@@ -14,15 +14,17 @@ export default function MainLayout({
   return (
     <div
       id="modal-root"
-      className="md:flex overflow-y-hidden relative  min-h-screen border-2"
+      className="md:flex overflow-y-hidden relative  min-h-screen "
     >
       <NavBar />
-      <main
-        id="content-container"
-        className=" md:w-3/4 md:max-w-5xl md:mr-auto  md:ml-auto px-5 md:px-0 "
-      >
-        <div className="overflow-y-auto">{children}</div>
-      </main>
+      <div className="w-full overflow-y-auto h-screen">
+        <main
+          id="content-container"
+          className=" md:w-3/4 md:max-w-5xl md:mr-auto  md:ml-auto px-5 md:px-0  "
+        >
+          <div className="">{children}</div>
+        </main>
+      </div>
     </div>
   );
 }
