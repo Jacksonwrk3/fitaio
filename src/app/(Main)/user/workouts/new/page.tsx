@@ -2,13 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/app/util/supabase/client";
-import {
-  Button,
-  TextInput,
-  Modal,
-  TextSkeleton,
-  SearchInput,
-} from "@/app/components";
+import { Button, TextInput, Modal, TextSkeleton } from "@/app/components";
+import ExerciseSearchBar from "./feature/ExerciseSearchBar";
 import { useState } from "react";
 const WorkoutsNew = () => {
   const [workoutName, setWorkoutName] = useState("");
@@ -31,7 +26,6 @@ const WorkoutsNew = () => {
     console.log(data);
   };
 
-  const handleSearchChange = async (searchValue: string) => {};
   return (
     <div>
       <div className="mb-4 mt-2 ">
@@ -72,7 +66,7 @@ const WorkoutsNew = () => {
               <label className="text-sm font-bold" htmlFor="exercise">
                 Add Exercises
               </label>
-              <SearchInput onChange={() => {}} />
+              <ExerciseSearchBar />
             </div>
             <Button
               onClick={() => {

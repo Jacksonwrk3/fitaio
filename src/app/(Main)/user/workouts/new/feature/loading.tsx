@@ -1,4 +1,4 @@
-import TextSkeleton from "../TextSkeleton";
+import TextSkeleton from "../../../../../components/TextSkeleton";
 const Loading = () => {
   return (
     <>
